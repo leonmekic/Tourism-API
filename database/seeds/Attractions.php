@@ -11,13 +11,13 @@ class Attractions extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Attractions::class, 5)->create(
+        factory(\App\Models\Attraction::class, 5)->create(
             [
                 'app_id' => 1
             ]
         );
 
-        factory(\App\Models\Attractions::class, 5)->create(
+        factory(\App\Models\Attraction::class, 5)->create(
             [
                 'app_id' => 2
             ]

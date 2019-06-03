@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LogIn;
-use App\Http\Requests\SignUp;
+use App\Http\Requests\LogInRequest;
+use App\Http\Requests\SignUpRequest;
 use App\Http\Resources\UserResource;
 use App\Notifications\SignupActivate;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function signup(SignUp $request)
+    public function signup(SignUpRequest $request)
     {
         $user = new User(
             [
@@ -38,7 +38,7 @@ class AuthController extends Controller
         );
     }
 
-    public function login(LogIn $request)
+    public function login(LogInRequest $request)
     {
         //        dd($request->user());
         //        $request->user()->token()->revoke();
@@ -111,41 +111,4 @@ class AuthController extends Controller
 
         return $user;
     }
-
-//    public function updateUser(Request $request)
-//    {
-//        $request->validate(
-//            [
-//                'email'        => 'required|string|email',
-//                'password'     => 'required|string',
-//                'name'         => 'required|string',
-//                'phone_number' => 'required|string',
-//            ]
-//        );
-//
-//        $credentials = request(['email', 'password']);
-//        $credentials['active'] = 1;
-//        $credentials['deleted_at'] = null;
-//
-//        if (!Auth::attempt($credentials)) {
-//            return response()->json(
-//                [
-//                    'message' => 'Unauthorized'
-//                ],
-//                401
-//            );
-//        }
-//
-//        $user = User::where('email', $request->input('email'))->first();
-//        $user->name = $request->name;
-//        $user->phone_number = $request->phone_number;
-//        $user->save();
-//
-//        return response()->json($user);
-//    }
-//
-//    public function user()
-//    {
-//        return $this->out(new UserResource(auth()->user()));
-//    }
 }

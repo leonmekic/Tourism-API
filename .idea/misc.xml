@@ -69,6 +69,6 @@
     </entry>
   </component>
   <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/database/factories/Accommodation.php" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2019_06_03_084949_create_reviews_table.php" />
   </component>
 </project>

@@ -27,11 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $user  = User::where('active', 0)->first();
-        $expirationDate = $user->created_at->add(3, 'day');
-        $schedule->command('unactiveAccountMail:send')->daily()->when(function () use($expirationDate){
-            return date(now()) == $expirationDate;
-        });
+        include base_path('routes/schedule.php');
     }
 
     /**

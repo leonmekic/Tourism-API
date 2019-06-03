@@ -7,10 +7,12 @@ use App\Notifications\expiredAccount;
 use Illuminate\Console\Command;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
 
 class unactiveAccountMail extends Command
 {
     use Notifiable;
+
     /**
      * The name and signature of the console command.
      *
@@ -42,9 +44,13 @@ class unactiveAccountMail extends Command
      */
     public function handle()
     {
-        $users = User::where('activation_token', '!=', '')->get();
+        $users = User::where('active', false)->get();
         foreach ($users as $user) {
-            $user->notify(new expiredAccount($user));
+            $expirationDate = $user->created_at->add(3, 'day');
+            if (date(now()) > $expirationDate) {
+                $user->notify(new expiredAccount($user));
+            }
         }
+        $this->info('Sent!');
     }
 }

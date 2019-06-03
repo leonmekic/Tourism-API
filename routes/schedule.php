@@ -1,7 +1,3 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: leon
- * Date: 2019-05-31
- * Time: 15:07
- */
+
+$schedule->command('unactiveAccountMail:send')->dailyAt('13:30');

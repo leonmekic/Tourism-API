@@ -22,6 +22,7 @@ class AttractionsResource extends JsonResource
             'description' => $this->description,
             'type'        => $this->type,
             'created_at'  => $this->created_at,
+            'reviews' => ReviewsResource::collection($this->whenLoaded('reviews')),
         ];
     }
 }

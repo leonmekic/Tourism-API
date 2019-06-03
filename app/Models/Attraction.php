@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Attractions extends Model
+class Attraction extends Model
 {
     public function generalInformation()
     {
@@ -14,5 +14,10 @@ class Attractions extends Model
     public function workingHours()
     {
         return $this->morphMany('App\Models\WorkingHours', 'workable', 'model_type', 'model_id');
+    }
+
+    public function reviews()
+    {
+        return $this->morphMany('App\Models\Reviews', 'reviewable', 'model_type', 'model_id');
     }
 }

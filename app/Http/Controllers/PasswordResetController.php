@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\PasswordReset;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Notifications\PasswordResetRequest;
@@ -110,7 +111,6 @@ class PasswordResetController extends Controller
                 404
             );
         }
-        $user = User::where('email', $passwordReset->email)->first();
         if (!$user) {
             return response()->json(
                 [

@@ -6,7 +6,7 @@ use App\Model;
 use Faker\Generator as Faker;
 
 $factory->define(
-    App\Models\Attractions::class,
+    App\Models\Attraction::class,
     function (Faker $faker) {
         return [
             'name'        => ucfirst($faker->firstName) . "'s" . $faker->randomElement([' Tower', ' Castle', ' Cliff']),

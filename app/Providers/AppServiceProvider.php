@@ -26,11 +26,4 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
-
-    /**  */
-    protected function schedule(Schedule $schedule)
-    {
-//        include __DIR__ . 'routes' . DIRECTORY_SEPARATOR . 'schedule.php';
-        require base_path('routes/schedule.php');
-    }
 }

@@ -15,4 +15,9 @@ class Accommodation extends Model
     {
         return $this->morphMany('App\Models\WorkingHours', 'workable', 'model_type', 'model_id');
     }
+
+    public function reviews()
+    {
+        return $this->morphMany('App\Models\Reviews', 'reviewable', 'model_type', 'model_id');
+    }
 }
