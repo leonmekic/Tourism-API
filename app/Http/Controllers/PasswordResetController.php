@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use App\Notifications\PasswordResetRequest;
 use App\Notifications\PasswordResetSuccess;
 use App\Models\User;
-use App\Models\PasswordResett;
+//use App\Models\PasswordReset;
 use Illuminate\Support\Facades\Auth;
 
 class PasswordResetController extends Controller
@@ -111,6 +111,7 @@ class PasswordResetController extends Controller
                 404
             );
         }
+        $user = User::where('email', $passwordReset->email)->first();
         if (!$user) {
             return response()->json(
                 [
@@ -138,8 +139,8 @@ class PasswordResetController extends Controller
     {
         $request->validate(
             [
-                'email'    => 'required|string|email',
-                'password' => 'required|string',
+                'email'        => 'required|string|email',
+                'password'     => 'required|string',
                 'new_password' => 'required|string|confirmed'
             ]
         );

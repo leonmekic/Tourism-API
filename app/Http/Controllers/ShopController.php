@@ -3,22 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ShopResource;
-use App\Models\Shops;
+use App\Models\Shop;
+use App\Repositories\ShopRepository;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
+    protected $shopRepository;
+
+    public function __construct(ShopRepository $shopRepository)
+    {
+        $this->shopRepository = $shopRepository;
+    }
+
     public function index()
     {
-        $shops = Shops::with('generalInformation', 'workingHours')->get();
+        $shops = Shop::with('generalInformation', 'workingHours')->get();
 
         return $this->out(ShopResource::collection($shops));
     }
 
-    public function show($id)
+    public function show(Shop $shop)
     {
-        $shops = Shops::with('generalInformation', 'workingHours')->find($id);
+        $shop->load('generalInformation', 'workingHours');
 
-        return $this->out(new ShopResource($shops));
+        return $this->out(new ShopResource($shop));
+    }
+
+    public function store(Request $request)
+    {
+        $payload = [];
+        $payload['name'] = $request->input('name');
+        $payload['type'] = $request->input('type');
+
+        $shop = $this->shopRepository->create($payload);
+
     }
 }

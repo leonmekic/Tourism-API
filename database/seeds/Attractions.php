@@ -11,16 +11,26 @@ class Attractions extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Attraction::class, 5)->create(
+        $app_1_attraction = factory(\App\Models\Attraction::class, 5)->create(
             [
                 'app_id' => 1
             ]
         );
 
-        factory(\App\Models\Attraction::class, 5)->create(
+        foreach ($app_1_attraction as $attraction) {
+            $review = factory(\App\Models\Review::class)->create();
+            $attraction->reviews()->save($review);
+        }
+
+        $app_2_attraction = factory(\App\Models\Attraction::class, 5)->create(
             [
                 'app_id' => 2
             ]
         );
+
+        foreach ($app_2_attraction as $attraction) {
+            $review = factory(\App\Models\Review::class)->create();
+            $attraction->reviews()->save($review);
+        }
     }
 }

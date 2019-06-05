@@ -21,8 +21,8 @@ class AttractionsResource extends JsonResource
             'address'     => $this->address,
             'description' => $this->description,
             'type'        => $this->type,
+            'reviews'     => ReviewsResource::collection($this->whenLoaded('reviews')),
             'created_at'  => $this->created_at,
-            'reviews' => ReviewsResource::collection($this->whenLoaded('reviews')),
         ];
     }
 }

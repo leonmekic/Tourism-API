@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\NewUserRegistered;
+use App\Notifications\SignupActivate;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -15,8 +17,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        NewUserRegistered::class => [
+            SignupActivate::class,
         ],
     ];
 
@@ -29,6 +31,10 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+    }
+
+    public function shouldDiscoverEvents()
+    {
+        return true;
     }
 }

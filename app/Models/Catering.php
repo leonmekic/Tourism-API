@@ -20,6 +20,6 @@ class Catering extends Model
 
     public function reviews()
     {
-        return $this->morphMany('App\Models\Reviews', 'reviewable', 'model_type', 'model_id');
+        return $this->morphMany('App\Models\Review', 'reviewable', 'model_type', 'model_id');
     }
 }

@@ -22,6 +22,8 @@ class Accommodation extends Seeder
             $accommodation->generalInformation()->save($general_info);
             $workingHours = factory(\App\Models\WorkingHours::class)->create();
             $accommodation->workingHours()->save($workingHours);
+            $review = factory(\App\Models\Review::class)->create();
+            $accommodation->reviews()->save($review);
         }
 
         $app_2_accommodations = factory(\App\Models\Accommodation::class, 5)->create(
@@ -35,6 +37,8 @@ class Accommodation extends Seeder
             $accommodation->generalInformation()->save($general_info);
             $workingHours = factory(\App\Models\WorkingHours::class)->create();
             $accommodation->workingHours()->save($workingHours);
+            $review = factory(\App\Models\Review::class)->create();
+            $accommodation->reviews()->save($review);
         }
 
     }

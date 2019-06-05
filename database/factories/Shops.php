@@ -6,7 +6,7 @@ use App\Model;
 use Faker\Generator as Faker;
 
 $factory->define(
-    App\Models\Shops::class,
+    App\Models\Shop::class,
     function (Faker $faker) {
         return [
             'name' => ucfirst($faker->lastName) . "'s" . $faker->randomElement(

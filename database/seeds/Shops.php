@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class Shops extends Seeder
+class Shop extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class Shops extends Seeder
      */
     public function run()
     {
-        $app_1_shops = factory(\App\Models\Shops::class, 5)->create(
+        $app_1_shops = factory(\App\Models\Shop::class, 5)->create(
             [
                 'app_id' => 1
             ]
@@ -24,7 +24,7 @@ class Shops extends Seeder
             $shop->workingHours()->save($workingHours);
         }
 
-        $app_2_shops = factory(\App\Models\Shops::class, 5)->create(
+        $app_2_shops = factory(\App\Models\Shop::class, 5)->create(
             [
                 'app_id' => 2
             ]

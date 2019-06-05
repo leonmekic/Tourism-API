@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Contracts\Model;
 
-class Accommodation extends Model
+class Shop extends Model
 {
     public function generalInformation()
     {
@@ -14,10 +14,5 @@ class Accommodation extends Model
     public function workingHours()
     {
         return $this->morphMany('App\Models\WorkingHours', 'workable', 'model_type', 'model_id');
-    }
-
-    public function reviews()
-    {
-        return $this->morphMany('App\Models\Review', 'reviewable', 'model_type', 'model_id');
     }
 }

@@ -22,6 +22,8 @@ class Catering extends Seeder
             $catering->generalInformation()->save($general_info);
             $workingHours = factory(\App\Models\WorkingHours::class)->create();
             $catering->workingHours()->save($workingHours);
+            $review = factory(\App\Models\Review::class)->create();
+            $catering->reviews()->save($review);
         }
 
         $app_2_catering = factory(\App\Models\Catering::class, 5, 'catering')->create(
@@ -35,6 +37,8 @@ class Catering extends Seeder
             $catering->generalInformation()->save($general_info);
             $workingHours = factory(\App\Models\WorkingHours::class)->create();
             $catering->workingHours()->save($workingHours);
+            $review = factory(\App\Models\Review::class)->create();
+            $catering->reviews()->save($review);
         }
     }
 }

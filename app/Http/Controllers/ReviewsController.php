@@ -17,52 +17,10 @@ class ReviewsController extends Controller
         return $this->out(ReviewsResource::collection($reviews));
     }
 
-    public function show($id)
+    public function show(Review $review)
     {
-        $reviews = Review::find($id);
-
-        return $this->out(new ReviewsResource($reviews));
+        return $this->out(new ReviewsResource($review));
     }
-
-    //    public function create()
-    //    {
-    //        return view('reviews.create');
-    //    }
-
-//    public function store(Request $request)
-//    {
-//        $validator = Validator::make(
-//            $request->all(),
-//            [
-//                'stars'   => 'required|integer|max:5',
-//                'comment' => 'required|max:255',
-//            ]
-//        );
-//
-//        if ($validator->fails()) {
-//            return response()->json($validator->errors());
-//        }
-//
-//        $review = new Review(
-//            [
-//                'stars'   => $request->stars,
-//                'comment' => $request->comment,
-//                'user_id' => auth()->id()
-//            ]
-//        );
-//
-//        $review->save();
-//    }
-
-    //    public function edit(Review $review)
-    //    {
-    //        if ($review->user_id !== auth()->id()) {
-    //            return response()->json('You can only edit your reviews');
-    //        };
-    //        $review = Review::find($review->id);
-    //
-    //        return view('reviews.edit', compact('review'));
-    //    }
 
     public function delete(Review $review)
     {
@@ -72,29 +30,18 @@ class ReviewsController extends Controller
         return $this->out('The review has been deleted!');
     }
 
-    public function update(Review $review)
+    public function update(Review $review, ReviewStoreRequest $request)
     {
-        $validator = Validator::make(
-            request()->all(),
-            [
-                'stars'   => 'required|integer|max:5',
-                'comment' => 'required|max:255',
-            ]
-        );
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
-        }
         if ($review->user_id !== auth()->id()) {
             return response()->json('You can only update your reviews');
         };
 
         $review = Review::find($review->id);
 
-        $review->stars = request()->stars;
-        $review->comment = request()->comment;
+        $review->stars = $request->stars;
+        $review->comment = $request->comment;
         $review->save();
 
-        return $this->out('The review has been updated!');
+        return $this->out(new ReviewsResource($review));
     }
 }

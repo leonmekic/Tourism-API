@@ -28,7 +28,7 @@ class AuthController extends Controller
         );
         $user->save();
 
-        $user->notify(new SignupActivate($user));
+//        $user->notify(new SignupActivate($user));
 
         return response()->json(
             [

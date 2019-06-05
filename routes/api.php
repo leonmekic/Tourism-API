@@ -71,12 +71,9 @@ Route::group(
     ],
     function () {
         Route::get('reviews', 'ReviewsController@index')->name('reviews.index');
-        Route::post('reviews', 'ReviewsController@store')->name('reviews.store');
         Route::get('reviews/{review}', 'ReviewsController@show')->name('reviews.show');
         Route::put('reviews/{review}', 'ReviewsController@update')->name('reviews.update');
         Route::delete('reviews/{review}', 'ReviewsController@delete')->name('reviews.delete');
-        Route::get('reviews/{review}/edit', 'ReviewsController@edit')->name('reviews.edit');
-        Route::get('reviews/create', 'ReviewsController@create')->name('reviews.create');
     }
 );
 
@@ -88,22 +85,32 @@ Route::group(
         Route::get('accommodations', 'AccommodationsController@index');
         Route::get('accommodations/{accommodation}', 'AccommodationsController@show');
         Route::post('accommodations/{accommodation}/review', 'AccommodationsController@storeReview');
-        Route::get('accommodations/reviews', 'AccommodationsController@indexReview');
-        Route::get('accommodations/reviews/{review}', 'AccommodationsController@showReview');
+        Route::get('accommodation/{accommodation}/reviews/', 'AccommodationsController@objectReviews');
+        Route::get('accommodation/reviews/', 'AccommodationsController@indexReview');
+        Route::get('accommodation/{accommodation}/reviews/statistics', 'AccommodationsController@reviewStatistics');
+        Route::get('accommodation/reviews/{review}', 'AccommodationsController@showReview') ;
 
         Route::get('attractions', 'AttractionsController@index');
         Route::get('attractions/{attraction}', 'AttractionsController@show');
         Route::post('attractions/{attraction}/review', 'AttractionsController@storeReview');
-        Route::get('attractions/reviews', 'AttractionsController@indexReview');
-        Route::get('attractions/reviews/{review}', 'AttractionsController@showReview');
+        Route::get('attraction/{attraction}/reviews', 'AttractionsController@objectReviews');
+        Route::get('attraction/reviews/', 'AttractionsController@indexReview');
+        Route::get('attraction/{attraction}/reviews/statistics', 'AttractionsController@reviewStatistics');
+        Route::get('attraction/reviews/{review}', 'AttractionsController@showReview');
 
         Route::get('caterings', 'CateringController@index');
         Route::get('caterings/{catering}', 'CateringController@show');
         Route::post('caterings/{catering}/review', 'CateringController@storeReview');
-        Route::get('caterings/reviews', 'CateringController@indexReview');
-        Route::get('caterings/reviews/{review}', 'CateringController@showReview');
+        Route::get('catering/{catering}/reviews', 'CateringController@objectReviews');
+        Route::get('catering/reviews/', 'CateringController@indexReview');
+        Route::get('catering/{catering}/reviews/statistics', 'CateringController@reviewStatistics');
+        Route::get('catering/reviews/{review}', 'CateringController@showReview');
 
         Route::get('shops', 'ShopController@index');
+        Route::post('shops', 'ShopController@store');
         Route::get('shops/{shop}', 'ShopController@show');
+
+        Route::get('events', 'EventController@indexz');
+        Route::get('events/{event}', 'EventController@show');
     }
 );
