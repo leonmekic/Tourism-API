@@ -9,10 +9,18 @@ use App\Http\Resources\ReviewsResource;
 use App\Models\Attraction;
 use App\Http\Resources\AttractionsResource;
 use App\Models\Review;
+use App\Repositories\ReviewRepository;
 use Illuminate\Http\Request;
 
 class AttractionsController extends Controller
 {
+    protected $reviewRepository;
+
+    public function __construct(ReviewRepository $reviewRepository)
+    {
+        $this->reviewRepository = $reviewRepository;
+    }
+
     public function index()
     {
         $attractions = Attraction::with('generalInformation')->get();
@@ -46,21 +54,13 @@ class AttractionsController extends Controller
 
     public function storeReview(Attraction $attraction, ReviewStoreRequest $request)
     {
-        $review = new Review(
-            [
-                'stars'   => $request->stars,
-                'comment' => $request->comment,
-                'user_id' => auth()->id(),
-                'app_id'  => 1
+        $payload = [];
+        $payload['stars'] = $request->input('stars');
+        $payload['comment'] = $request->input('comment');
 
-            ]
-        );
+        $review = $this->reviewRepository->createReview($attraction, $payload);
 
-        $review->save();
-
-        $attraction->reviews()->save($review);
-
-        return $this->out(new ReviewsResource($review));
+        return $this->out(new ReviewsResource($review), __('review.created'));
     }
 
     public function reviewStatistics(Attraction $attraction)

@@ -27,7 +27,7 @@ class UserController extends Controller
         if (!Auth::guard('web')->attempt($credentials)) {
             return response()->json(
                 [
-                    'message' => 'Unauthorized'
+                    __('user.unauthorized')
                 ],
                 401
             );

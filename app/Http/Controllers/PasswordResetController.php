@@ -29,7 +29,7 @@ class PasswordResetController extends Controller
         if (!$user) {
             return response()->json(
                 [
-                    'message' => 'We cant find a user with that e-mail address.'
+                    __('user.invalid-email')
                 ],
                 404
             );
@@ -49,7 +49,7 @@ class PasswordResetController extends Controller
 
         return response()->json(
             [
-                'message' => 'We have e-mailed your password reset link!'
+               __('user.password-reset-email')
             ]
         );
     }
@@ -63,7 +63,7 @@ class PasswordResetController extends Controller
         if (!$passwordReset) {
             return response()->json(
                 [
-                    'message' => 'This password reset token is invalid.'
+                    __('user.invalid-token')
                 ],
                 404
             );
@@ -73,7 +73,7 @@ class PasswordResetController extends Controller
 
             return response()->json(
                 [
-                    'message' => 'This password reset token is invalid.'
+                    __('user.invalid-token')
                 ],
                 404
             );
@@ -106,7 +106,7 @@ class PasswordResetController extends Controller
         if (!$passwordReset) {
             return response()->json(
                 [
-                    'message' => 'This password reset token is invalid.'
+                    __('user.invalid-token')
                 ],
                 404
             );
@@ -115,7 +115,7 @@ class PasswordResetController extends Controller
         if (!$user) {
             return response()->json(
                 [
-                    'message' => 'We cant find a user with that e-mail address.'
+                    __('user.invalid-email')
                 ],
                 404
             );
@@ -152,7 +152,7 @@ class PasswordResetController extends Controller
         if (!Auth::attempt($credentials)) {
             return response()->json(
                 [
-                    'message' => 'Unauthorized'
+                    __('user.unauthorized')
                 ],
                 401
             );

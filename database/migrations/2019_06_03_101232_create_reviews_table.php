@@ -20,7 +20,6 @@ class CreateReviewsTable extends Migration
             $table->text('comment');
             $table->integer('model_id')->nullable();
             $table->string('model_type')->nullable();
-            $table->integer('app_id');
             $table->timestamps();
             $table->softDeletes();
         });

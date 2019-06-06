@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Contracts\Model;
 use App\Contracts\Repositories\Repository;
 use App\Models\Review;
 
@@ -24,4 +25,31 @@ class ReviewRepository extends Repository {
     {
         return Review::class;
     }
+
+    public function createReview($model, array $payload)
+    {
+        $payload['user_id'] = auth()->id();
+        $payload['model_type'] = get_class($model);
+        $payload['model_id'] = $model->id;
+
+
+
+        $review = parent::create($payload);
+
+        return $review;
+    }
+
+    public function deleteReview(Model $model)
+    {
+//        $payload['app_id'] = 2;
+//        $payload['user_id'] = auth()->id();
+//        $payload['model_type'] = get_class($model);
+//        $payload['model_id'] = $model->id;
+
+
+
+        parent::delete($model);
+
+    }
+
 }

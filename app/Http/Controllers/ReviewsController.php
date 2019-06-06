@@ -5,14 +5,23 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReviewStoreRequest;
 use App\Http\Resources\ReviewsResource;
 use \App\Models\Review;
+use App\Repositories\ReviewRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\File;
 
 class ReviewsController extends Controller
 {
+    protected $reviewRepository;
+
+    public function __construct(ReviewRepository $reviewRepository)
+    {
+        $this->reviewRepository = $reviewRepository;
+    }
+
     public function index()
     {
-        $reviews = Review::all();
+        $reviews = $this->reviewRepository->all();
 
         return $this->out(ReviewsResource::collection($reviews));
     }
@@ -24,24 +33,27 @@ class ReviewsController extends Controller
 
     public function delete(Review $review)
     {
-        $review = Review::findOrFail($review->id);
-        $review->delete();
+        $this->reviewRepository->deleteReview($review);
 
-        return $this->out('The review has been deleted!');
+        return $this->out([], __('review.deleted'));
     }
 
     public function update(Review $review, ReviewStoreRequest $request)
     {
         if ($review->user_id !== auth()->id()) {
-            return response()->json('You can only update your reviews');
+            return response()->json(__('review.private'));
         };
 
-        $review = Review::find($review->id);
+        $payload = [];
+        $payload['stars'] = $request->input('stars');
+        $payload['comment'] = $request->input('comment');
+        $this->reviewRepository->update($review, $payload);
 
-        $review->stars = $request->stars;
-        $review->comment = $request->comment;
-        $review->save();
+        return $this->out(new ReviewsResource($review), __('review.updated'));
+    }
 
-        return $this->out(new ReviewsResource($review));
+    public function upload() {
+//        \Illuminate\Support\Facades\Storage::putFile('photos', new File('/Users/leon/Downloads/web-leon.jpg'));
+        return 'hii';
     }
 }

@@ -47,7 +47,7 @@ class unactiveAccountMail extends Command
         $users = User::where('active', false)->get();
         foreach ($users as $user) {
             $expirationDate = $user->created_at->add(3, 'day');
-            if (date(now()) > $expirationDate) {
+            if (date(now()) == $expirationDate) {
                 $user->notify(new expiredAccount($user));
             }
         }

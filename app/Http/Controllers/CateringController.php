@@ -10,11 +10,19 @@ use App\Models\Catering;
 use App\Http\Resources\CateringResource;
 use App\Models\Review;
 use App\Notifications\expiredAccount;
+use App\Repositories\ReviewRepository;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 
 class CateringController extends Controller
 {
+    protected $reviewRepository;
+
+    public function __construct(ReviewRepository $reviewRepository)
+    {
+        $this->reviewRepository = $reviewRepository;
+    }
+
     public function index()
     {
         $caterings = Catering::with('generalInformation', 'workingHours')->get();
@@ -46,23 +54,15 @@ class CateringController extends Controller
         return $this->out(new ReviewsResource($review));
     }
 
-    public function storeReview(Catering $catering, Review $request)
+    public function storeReview(Catering $catering, ReviewStoreRequest $request)
     {
-        $review = new Review(
-            [
-                'stars'   => $request->stars,
-                'comment' => $request->comment,
-                'user_id' => auth()->id(),
-                'app_id'  => 1
+        $payload = [];
+        $payload['stars'] = $request->input('stars');
+        $payload['comment'] = $request->input('comment');
 
-            ]
-        );
+        $review = $this->reviewRepository->createReview($catering, $payload);
 
-        $review->save();
-
-        $catering->reviews()->save($review);
-
-        return $this->out(new ReviewsResource($review));
+        return $this->out(new ReviewsResource($review), __('review.created'));
     }
 
     public function reviewStatistics(Catering $catering)

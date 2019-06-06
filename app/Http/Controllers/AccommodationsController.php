@@ -9,11 +9,19 @@ use App\Http\Resources\ReviewsResource;
 use App\Models\Accommodation;
 use App\Http\Resources\AccommodationResource;
 use App\Models\Review;
+use App\Repositories\ReviewRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class AccommodationsController extends Controller
 {
+    protected $reviewRepository;
+
+    public function __construct(ReviewRepository $reviewRepository)
+    {
+        $this->reviewRepository = $reviewRepository;
+    }
+
     public function index() // List of available accommodations
     {
         $accommodations = Accommodation::with('generalInformation', 'workingHours')->get();
@@ -28,7 +36,8 @@ class AccommodationsController extends Controller
         return $this->out(new AccommodationResource($accommodation));
     }
 
-    public function objectReviews(Accommodation $accommodation) // Show particular accommodation reviews -- samo review se treba pokazivat
+    public function objectReviews(Accommodation $accommodation
+    ) // Show particular accommodation reviews -- samo review se treba pokazivat
     {
         return $this->out(ReviewsResource::collection($accommodation->reviews()->get()));
     }
@@ -47,24 +56,17 @@ class AccommodationsController extends Controller
 
     public function storeReview(Accommodation $accommodation, ReviewStoreRequest $request)
     {
-        $review = new Review(
-            [
-                'stars'   => $request->stars,
-                'comment' => $request->comment,
-                'user_id' => auth()->id(),
-                'app_id'  => 1
+        $payload = [];
+        $payload['stars'] = $request->input('stars');
+        $payload['comment'] = $request->input('comment');
 
-            ]
-        );
+        $review = $this->reviewRepository->createReview($accommodation, $payload);
 
-        $review->save();
-
-        $accommodation->reviews()->save($review);
-
-        return $this->out(new ReviewsResource($review));
+        return $this->out(new ReviewsResource($review), __('review.created'));
     }
 
-    public function reviewStatistics(Accommodation $accommodation) // Show particular accommodation with review statistics
+    public function reviewStatistics(Accommodation $accommodation
+    ) // Show particular accommodation with review statistics
     {
         $accommodation->number_of_reviews = $accommodation->reviews()->count();
 

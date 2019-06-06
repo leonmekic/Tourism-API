@@ -32,7 +32,7 @@ class AuthController extends Controller
 
         return response()->json(
             [
-                'message' => 'Successfully created user!'
+                __('user.created')
             ],
             201
         );
@@ -50,7 +50,7 @@ class AuthController extends Controller
         if (!Auth::attempt($credentials)) {
             return response()->json(
                 [
-                    'message' => 'Unauthorized'
+                    __('user.unauthorized')
                 ],
                 401
             );
@@ -89,7 +89,7 @@ class AuthController extends Controller
 
         return response()->json(
             [
-                'message' => 'Successfully logged out'
+               __('user.logout')
             ]
         );
     }
@@ -100,7 +100,7 @@ class AuthController extends Controller
         if (!$user) {
             return response()->json(
                 [
-                    'message' => 'This activation token is invalid.'
+                   __('user.invalid-token')
                 ],
                 404
             );

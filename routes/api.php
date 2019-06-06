@@ -71,6 +71,7 @@ Route::group(
     ],
     function () {
         Route::get('reviews', 'ReviewsController@index')->name('reviews.index');
+        Route::get('pic', 'ReviewsController@upload');
         Route::get('reviews/{review}', 'ReviewsController@show')->name('reviews.show');
         Route::put('reviews/{review}', 'ReviewsController@update')->name('reviews.update');
         Route::delete('reviews/{review}', 'ReviewsController@delete')->name('reviews.delete');

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Contracts\Repositories;
 
 trait ApplyCriteriaTrait
@@ -44,6 +45,7 @@ trait ApplyCriteriaTrait
      * Use `pushCriteria` instead of this
      *
      * @deprecated
+     *
      * @param CriteriaInterface $criteria
      *
      * @return $this
