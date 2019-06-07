@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Contracts\Model;
+use Bnb\Laravel\Attachments\HasAttachment;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Review extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasAttachment;
 
     protected $fillable = [
         'stars',
@@ -22,4 +23,10 @@ class Review extends Model
     {
         return $this->morphTo();
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
 }

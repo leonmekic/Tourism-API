@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use App\Contracts\Model;
+use Bnb\Laravel\Attachments\HasAttachment;
 
 class Catering extends Model
 {
+    use HasAttachment;
+
     protected $table = 'catering';
 
     public function generalInformation()

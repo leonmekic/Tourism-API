@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreatePasswordResetRequest;
 use App\Http\Resources\UserResource;
 use App\Models\PasswordReset;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Notifications\PasswordResetRequest;
+use App\Http\Requests\PasswordResetRequest;
 use App\Notifications\PasswordResetSuccess;
 use App\Models\User;
 //use App\Models\PasswordReset;
@@ -18,13 +19,8 @@ class PasswordResetController extends Controller
     /**
      * Create token password reset
      */
-    public function create(Request $request)
+    public function create(CreatePasswordResetRequest $request)
     {
-        $request->validate(
-            [
-                'email' => 'required|string|email',
-            ]
-        );
         $user = User::where('email', $request->email)->first();
         if (!$user) {
             return response()->json(
@@ -88,15 +84,8 @@ class PasswordResetController extends Controller
     /**
      * Reset password
      */
-    public function reset(Request $request)
+    public function reset(PasswordResetRequest $request)
     {
-        $request->validate(
-            [
-                'email'    => 'required|string|email',
-                'password' => 'required|string|confirmed',
-                'token'    => 'required|string'
-            ]
-        );
         $passwordReset = PasswordReset::where(
             [
                 ['token', $request->token],
@@ -137,14 +126,6 @@ class PasswordResetController extends Controller
 
     public function changePassword(Request $request)
     {
-        $request->validate(
-            [
-                'email'        => 'required|string|email',
-                'password'     => 'required|string',
-                'new_password' => 'required|string|confirmed'
-            ]
-        );
-
         $credentials = request(['email', 'password']);
         $credentials['active'] = 1;
         $credentials['deleted_at'] = null;

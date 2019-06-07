@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use App\Contracts\Model;
+use Bnb\Laravel\Attachments\HasAttachment;
 
 class Accommodation extends Model
 {
+    use HasAttachment;
+
     public function generalInformation()
     {
         return $this->morphMany('App\Models\GeneralInfo', 'informable', 'model_type', 'model_id');

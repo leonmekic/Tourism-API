@@ -29,14 +29,4 @@ class ShopController extends Controller
 
         return $this->out(new ShopResource($shop));
     }
-
-    public function store(Request $request)
-    {
-        $payload = [];
-        $payload['name'] = $request->input('name');
-        $payload['type'] = $request->input('type');
-
-        $shop = $this->shopRepository->create($payload);
-
-    }
 }

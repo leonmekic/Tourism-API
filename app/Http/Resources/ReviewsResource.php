@@ -16,10 +16,13 @@ class ReviewsResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'         => $this->id,
-            'stars'      => $this->stars,
-            'comment'    => $this->comment,
-            'created_at' => $this->created_at,
+            'id'          => $this->id,
+            'stars'       => $this->stars,
+            'comment'     => $this->comment,
+            'created_at'  => $this->created_at,
+            'user'        => new UserResource($this->whenLoaded('user')),
+            'attachments' => AttachmentsResource::collection($this->whenLoaded('attachments'))
         ];
     }
+
 }

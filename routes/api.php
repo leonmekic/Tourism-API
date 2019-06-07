@@ -75,6 +75,7 @@ Route::group(
         Route::get('reviews/{review}', 'ReviewsController@show')->name('reviews.show');
         Route::put('reviews/{review}', 'ReviewsController@update')->name('reviews.update');
         Route::delete('reviews/{review}', 'ReviewsController@delete')->name('reviews.delete');
+        Route::delete('reviews/{review}/photo', 'ReviewsController@deleteReviewPhoto');
     }
 );
 
@@ -108,7 +109,6 @@ Route::group(
         Route::get('catering/reviews/{review}', 'CateringController@showReview');
 
         Route::get('shops', 'ShopController@index');
-        Route::post('shops', 'ShopController@store');
         Route::get('shops/{shop}', 'ShopController@show');
 
         Route::get('events', 'EventController@indexz');

@@ -28,7 +28,7 @@ class ReviewsController extends Controller
 
     public function show(Review $review)
     {
-        return $this->out(new ReviewsResource($review));
+        return $this->out(new ReviewsResource($review->load('user', 'attachments')));
     }
 
     public function delete(Review $review)
@@ -52,8 +52,10 @@ class ReviewsController extends Controller
         return $this->out(new ReviewsResource($review), __('review.updated'));
     }
 
-    public function upload() {
-//        \Illuminate\Support\Facades\Storage::putFile('photos', new File('/Users/leon/Downloads/web-leon.jpg'));
-        return 'hii';
+    public function deleteReviewPhoto(Review $review)
+    {
+        $review->attachments()->delete();
+
+        return $this->out(new ReviewsResource($review), __('review.photos-deleted'));
     }
 }

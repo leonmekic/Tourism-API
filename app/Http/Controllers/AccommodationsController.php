@@ -36,8 +36,7 @@ class AccommodationsController extends Controller
         return $this->out(new AccommodationResource($accommodation));
     }
 
-    public function objectReviews(Accommodation $accommodation
-    ) // Show particular accommodation reviews -- samo review se treba pokazivat
+    public function objectReviews(Accommodation $accommodation) // Show particular accommodation reviews
     {
         return $this->out(ReviewsResource::collection($accommodation->reviews()->get()));
     }
@@ -61,6 +60,11 @@ class AccommodationsController extends Controller
         $payload['comment'] = $request->input('comment');
 
         $review = $this->reviewRepository->createReview($accommodation, $payload);
+
+        if ($request->file('photo')) {
+            $review->attach($request->file('photo'), ['disk' => 'public']);
+            $review->load('attachments');
+        }
 
         return $this->out(new ReviewsResource($review), __('review.created'));
     }

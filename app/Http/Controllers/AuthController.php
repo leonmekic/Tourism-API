@@ -28,7 +28,7 @@ class AuthController extends Controller
         );
         $user->save();
 
-//        $user->notify(new SignupActivate($user));
+        $user->notify(new SignupActivate($user));
 
         return response()->json(
             [
@@ -40,9 +40,6 @@ class AuthController extends Controller
 
     public function login(LogInRequest $request)
     {
-        //        dd($request->user());
-        //        $request->user()->token()->revoke();
-
         $credentials = request(['email', 'password']);
         $credentials['active'] = 1;
         $credentials['deleted_at'] = null;

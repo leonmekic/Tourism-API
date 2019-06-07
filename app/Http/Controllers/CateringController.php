@@ -62,6 +62,11 @@ class CateringController extends Controller
 
         $review = $this->reviewRepository->createReview($catering, $payload);
 
+        if ($request->file('photo')) {
+            $review->attach($request->file('photo'), ['disk' => 'public']);
+            $review->load('attachments');
+        }
+
         return $this->out(new ReviewsResource($review), __('review.created'));
     }
 
