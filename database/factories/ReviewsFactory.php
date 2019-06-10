@@ -12,7 +12,6 @@ $factory->define(
             'user_id' => 1,
             'stars'   => $faker->randomElement([5, 4, 3]),
             'comment' => $faker->sentence,
-            'app_id'  => 1
         ];
     }
 );

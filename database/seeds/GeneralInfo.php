@@ -11,14 +11,14 @@ class GeneralInfo extends Seeder
      */
     public function run()
     {
-        $accommodations = \App\Models\Accommodation::all()->pluck('id');
-
-        factory(\App\Models\GeneralInfo::class, 10)->create(
-            [
-                'model_id'   => $accommodations->random(),
-                'model_type' => 'App\Models\Accommodation'
-            ]
-        );
+//        $accommodations = \App\Models\Accommodation::all()->pluck('id');
+//
+//        factory(\App\Models\GeneralInfo::class, 10)->create(
+//            [
+//                'model_id'   => $accommodations->random(),
+//                'model_type' => 'App\Models\Accommodation'
+//            ]
+//        );
 
     }
 }
