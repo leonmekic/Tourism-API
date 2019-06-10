@@ -8,16 +8,12 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    private $event;
-
-    public function __construct(Event $event) {
-
-        $this->event = $event;
-    }
-
-    public function indexz() {
-        return response()->json($this->event->with('workingHours')->get());
-    }
+//    private $event;
+//
+//    public function __construct(Event $event) {
+//
+//        $this->event = $event;
+//    }
 
     public function index()
     {

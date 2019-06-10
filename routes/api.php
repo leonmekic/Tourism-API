@@ -71,7 +71,6 @@ Route::group(
     ],
     function () {
         Route::get('reviews', 'ReviewsController@index')->name('reviews.index');
-        Route::get('pic', 'ReviewsController@upload');
         Route::get('reviews/{review}', 'ReviewsController@show')->name('reviews.show');
         Route::put('reviews/{review}', 'ReviewsController@update')->name('reviews.update');
         Route::delete('reviews/{review}', 'ReviewsController@delete')->name('reviews.delete');
@@ -111,7 +110,7 @@ Route::group(
         Route::get('shops', 'ShopController@index');
         Route::get('shops/{shop}', 'ShopController@show');
 
-        Route::get('events', 'EventController@indexz');
+        Route::get('events', 'EventController@index');
         Route::get('events/{event}', 'EventController@show');
     }
 );
