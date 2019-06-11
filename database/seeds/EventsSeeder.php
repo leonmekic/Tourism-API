@@ -24,7 +24,7 @@ class EventsSeeder extends Seeder
 
         $app_1_events = factory(\App\Models\Event::class, 5)->create(
             [
-                'app_id' => 1
+                'app_id' => 2
             ]
         );
 

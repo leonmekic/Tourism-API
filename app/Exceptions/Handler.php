@@ -52,5 +52,6 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         return $this->getJsonResponseForException($request, $exception);
+//        return parent::render($request, $exception);
     }
 }
