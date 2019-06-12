@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Objects;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ReviewStoreRequest;
 use App\Http\Resources\ObjectAvgRatingResource;
 use App\Http\Resources\ObjectStatisticsResource;
@@ -10,8 +11,6 @@ use App\Models\Accommodation;
 use App\Http\Resources\AccommodationResource;
 use App\Models\Review;
 use App\Repositories\ReviewRepository;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class AccommodationsController extends Controller
 {
@@ -22,37 +21,55 @@ class AccommodationsController extends Controller
         $this->reviewRepository = $reviewRepository;
     }
 
-    public function index() // List of available accommodations
+    /**
+     * List of available accommodations
+     */
+    public function index()
     {
-        $accommodations = Accommodation::with('generalInformation', 'workingHours')->get();
+        $accommodations = Accommodation::with('generalInformation', 'workingHours')->paginate(5);
 
-        return $this->out(AccommodationResource::collection($accommodations));
+        return $this->outPaginated(AccommodationResource::collection($accommodations));
     }
 
-    public function show(Accommodation $accommodation) // Show particular accommodation
+    /**
+     * Show particular accommodation
+     */
+    public function show(Accommodation $accommodation)
     {
         $accommodation->load('generalInformation', 'workingHours');
 
         return $this->out(new AccommodationResource($accommodation));
     }
 
-    public function objectReviews(Accommodation $accommodation) // Show particular accommodation reviews
+    /**
+     * Show particular accommodation reviews
+     */
+    public function objectReviews(Accommodation $accommodation)
     {
-        return $this->out(ReviewsResource::collection($accommodation->reviews()->get()));
+        return $this->outPaginated(ReviewsResource::collection($accommodation->reviews()->paginate(5)));
     }
 
-    public function indexReview() // List of available accommodations with review stats
+    /**
+     * List of available accommodations with review stats
+     */
+    public function indexReview()
     {
         $accommodations = Accommodation::with('reviews')->get();
 
         return $this->out(ObjectAvgRatingResource::collection($accommodations));
     }
 
-    public function showReview(Review $review) // show particular review
+    /**
+     * Show particular review
+     */
+    public function showReview(Review $review)
     {
         return $this->out(new ReviewsResource($review));
     }
 
+    /**
+     * Store Review
+     */
     public function storeReview(Accommodation $accommodation, ReviewStoreRequest $request)
     {
         $payload = [];
@@ -69,8 +86,10 @@ class AccommodationsController extends Controller
         return $this->out(new ReviewsResource($review), __('review.created'));
     }
 
-    public function reviewStatistics(Accommodation $accommodation
-    ) // Show particular accommodation with review statistics
+    /**
+     * Show particular accommodation with review statistics
+     */
+    public function reviewStatistics(Accommodation $accommodation)
     {
         $accommodation->number_of_reviews = $accommodation->reviews()->count();
 

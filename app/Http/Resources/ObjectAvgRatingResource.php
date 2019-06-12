@@ -18,7 +18,7 @@ class ObjectAvgRatingResource extends JsonResource
         return [
             'id'                => $this->id,
             'name'              => $this->name,
-            'average_rating'    => number_format($this->reviews()->avg('stars'), 1),
+            'average_rating'    => $this->avgRating,
             'number_of_reviews' => $this->reviews()->count(),
         ];
     }

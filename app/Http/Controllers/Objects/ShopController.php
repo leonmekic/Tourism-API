@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Objects;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\ShopResource;
 use App\Models\Shop;
 use App\Repositories\ShopRepository;
-use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
@@ -18,9 +18,9 @@ class ShopController extends Controller
 
     public function index()
     {
-        $shops = Shop::with('generalInformation', 'workingHours')->get();
+        $shops = Shop::with('generalInformation', 'workingHours')->paginate(5);
 
-        return $this->out(ShopResource::collection($shops));
+        return $this->outPaginated(ShopResource::collection($shops));
     }
 
     public function show(Shop $shop)

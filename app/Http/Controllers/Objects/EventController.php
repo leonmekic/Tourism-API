@@ -1,25 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Objects;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\EventResource;
 use App\Models\Event;
-use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-//    private $event;
-//
-//    public function __construct(Event $event) {
-//
-//        $this->event = $event;
-//    }
-
     public function index()
     {
-        $events = Event::with('workingHours')->get();
+        $events = Event::with('workingHours')->paginate(5);
 
-        return $this->out(EventResource::collection($events));
+        return $this->outPaginated(EventResource::collection($events));
     }
 
     public function show(Event $event)

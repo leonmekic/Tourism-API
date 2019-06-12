@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Objects;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ReviewStoreRequest;
 use App\Http\Resources\ObjectAvgRatingResource;
 use App\Http\Resources\ObjectStatisticsResource;
@@ -9,10 +10,7 @@ use App\Http\Resources\ReviewsResource;
 use App\Models\Catering;
 use App\Http\Resources\CateringResource;
 use App\Models\Review;
-use App\Notifications\expiredAccount;
 use App\Repositories\ReviewRepository;
-use Illuminate\Http\Request;
-use Illuminate\Notifications\Notifiable;
 
 class CateringController extends Controller
 {
@@ -25,9 +23,9 @@ class CateringController extends Controller
 
     public function index()
     {
-        $caterings = Catering::with('generalInformation', 'workingHours')->get();
+        $caterings = Catering::with('generalInformation', 'workingHours')->paginate(5);
 
-        return $this->out(CateringResource::collection($caterings));
+        return $this->outPaginated(CateringResource::collection($caterings));
     }
 
     public function show(Catering $catering)
@@ -39,7 +37,7 @@ class CateringController extends Controller
 
     public function objectReviews(Catering $catering)
     {
-        return $this->out(ReviewsResource::collection($catering->reviews()->get()));
+        return $this->outPaginated(ReviewsResource::collection($catering->reviews()->paginate(5)));
     }
 
     public function indexReview()

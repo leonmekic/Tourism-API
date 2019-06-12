@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
+use Carbon\Carbon;
 use Closure;
 
 class IsAccountActive
@@ -16,14 +18,13 @@ class IsAccountActive
      */
     public function handle($request, Closure $next)
     {
-        $expirationDate = auth()->guard('api')->user()->created_at->add(3, 'day');
+        $user = auth()->guard('api')->user();
 
-        if (auth()->guard('api')->user()->active == 0) {
-            if (date(now()) > $expirationDate) {
-                return redirect('home');
-            }
+        $expirationDate = Carbon::parse($user->created_at)->addDays(3);
+        $now = Carbon::now();
 
-            return $next($request);
+        if ($user->active == 0 && $now > $expirationDate) {
+            throw new \Exception('Account is inactive');
         }
 
         return $next($request);

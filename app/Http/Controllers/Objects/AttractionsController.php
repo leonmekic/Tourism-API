@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Objects;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ReviewStoreRequest;
 use App\Http\Resources\ObjectAvgRatingResource;
 use App\Http\Resources\ObjectStatisticsResource;
@@ -10,7 +11,6 @@ use App\Models\Attraction;
 use App\Http\Resources\AttractionsResource;
 use App\Models\Review;
 use App\Repositories\ReviewRepository;
-use Illuminate\Http\Request;
 
 class AttractionsController extends Controller
 {
@@ -21,13 +21,19 @@ class AttractionsController extends Controller
         $this->reviewRepository = $reviewRepository;
     }
 
+    /**
+     * List of available attraction
+     */
     public function index()
     {
-        $attractions = Attraction::with('generalInformation')->get();
+        $attractions = Attraction::with('generalInformation')->paginate(5);
 
-        return $this->out(AttractionsResource::collection($attractions));
+        return $this->outPaginated(AttractionsResource::collection($attractions));
     }
 
+    /**
+     * Show particular accommodation
+     */
     public function show(Attraction $attraction)
     {
         $attraction->load('generalInformation');
@@ -35,11 +41,17 @@ class AttractionsController extends Controller
         return $this->out(new AttractionsResource($attraction));
     }
 
+    /**
+     * List of available attraction
+     */
     public function objectReviews(Attraction $attraction)
     {
-        return $this->out(ReviewsResource::collection($attraction->reviews()->get()));
+        return $this->outPaginated(ReviewsResource::collection($attraction->reviews()->paginate(5)));
     }
 
+    /**
+     * List of available attraction
+     */
     public function indexReview()
     {
         $accommodations = Attraction::with('reviews')->get();
@@ -47,11 +59,17 @@ class AttractionsController extends Controller
         return $this->out(ObjectAvgRatingResource::collection($accommodations));
     }
 
+    /**
+     * List of available attraction
+     */
     public function showReview(Review $review)
     {
         return $this->out(new ReviewsResource($review));
     }
 
+    /**
+     * List of available attraction
+     */
     public function storeReview(Attraction $attraction, ReviewStoreRequest $request)
     {
         $payload = [];
@@ -68,6 +86,9 @@ class AttractionsController extends Controller
         return $this->out(new ReviewsResource($review), __('review.created'));
     }
 
+    /**
+     * List of available attraction
+     */
     public function reviewStatistics(Attraction $attraction)
     {
         $attraction->number_of_reviews = $attraction->reviews()->count();

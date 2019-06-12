@@ -163,9 +163,11 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Bnb\Laravel\Attachments\AttachmentsServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
+        TCG\Voyager\VoyagerServiceProvider::class,
 
         /*
          * Application Service Providers...

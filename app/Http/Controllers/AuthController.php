@@ -30,10 +30,9 @@ class AuthController extends Controller
 
         $user->notify(new SignupActivate($user));
 
-        return response()->json(
-            [
-                __('user.created')
-            ],
+        return $this->out(
+            [],
+            __('user.created'),
             201
         );
     }
@@ -41,14 +40,12 @@ class AuthController extends Controller
     public function login(LogInRequest $request)
     {
         $credentials = request(['email', 'password']);
-        $credentials['active'] = 1;
         $credentials['deleted_at'] = null;
 
         if (!Auth::attempt($credentials)) {
-            return response()->json(
-                [
-                    __('user.unauthorized')
-                ],
+            return $this->out(
+                [],
+                __('user.unauthorized'),
                 401
             );
         }
@@ -69,14 +66,15 @@ class AuthController extends Controller
         }
         $token->save();
 
-        return response()->json(
+        return $this->out(
             [
                 'access_token' => $tokenResult->accessToken,
                 'token_type'   => 'Bearer',
                 'expires_at'   => Carbon::parse(
                     $tokenResult->token->expires_at
                 )->toDateTimeString()
-            ]
+            ],
+            __('user.login')
         );
     }
 
@@ -84,10 +82,10 @@ class AuthController extends Controller
     {
         $request->user()->token()->revoke();
 
-        return response()->json(
-            [
-               __('user.logout')
-            ]
+        return $this->out(
+            [],
+            __('user.logout')
+
         );
     }
 
@@ -95,10 +93,9 @@ class AuthController extends Controller
     {
         $user = User::where('activation_token', $token)->first();
         if (!$user) {
-            return response()->json(
-                [
-                   __('user.invalid-token')
-                ],
+            return $this->out(
+                [],
+                __('user.invalid-token'),
                 404
             );
         }
@@ -106,6 +103,6 @@ class AuthController extends Controller
         $user->activation_token = '';
         $user->save();
 
-        return $user;
+        return $this->out([], __('user.activated'));
     }
 }

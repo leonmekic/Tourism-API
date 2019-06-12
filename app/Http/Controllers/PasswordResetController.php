@@ -3,16 +3,19 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\CreatePasswordResetRequest;
 use App\Http\Resources\UserResource;
 use App\Models\PasswordReset;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\Requests\PasswordResetRequest;
+use App\Notifications\PasswordResetRequest as PasswordResetRequestNotification;
 use App\Notifications\PasswordResetSuccess;
 use App\Models\User;
 //use App\Models\PasswordReset;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth as Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PasswordResetController extends Controller
 {
@@ -39,14 +42,13 @@ class PasswordResetController extends Controller
         );
         if ($user && $passwordReset) {
             $user->notify(
-                new PasswordResetRequest($passwordReset->token)
+                new PasswordResetRequestNotification($passwordReset->token)
             );
         }
 
-        return response()->json(
-            [
-               __('user.password-reset-email')
-            ]
+        return $this->out(
+            [],
+            __('user.password-reset-email')
         );
     }
 
@@ -57,28 +59,23 @@ class PasswordResetController extends Controller
     {
         $passwordReset = PasswordReset::where('token', $token)->first();
         if (!$passwordReset) {
-            return response()->json(
-                [
-                    __('user.invalid-token')
-                ],
+            return $this->out(
+                [],
+                __('user.invalid-token'),
                 404
             );
         }
         if (Carbon::parse($passwordReset->updated_at)->addMinutes(720)->isPast()) {
             $passwordReset->delete();
 
-            return response()->json(
-                [
-                    __('user.invalid-token')
-                ],
+            return $this->out(
+                [],
+                __('user.invalid-token'),
                 404
             );
         }
 
-        return response()->json($passwordReset);
-        //        return redirect()->route('reset')->with($passwordReset);
-        //        return $this->view($passwordReset);
-
+        return $this->out($passwordReset);
     }
 
     /**
@@ -93,19 +90,18 @@ class PasswordResetController extends Controller
             ]
         )->first();
         if (!$passwordReset) {
-            return response()->json(
-                [
-                    __('user.invalid-token')
-                ],
+            return $this->out(
+                [],
+
+                __('user.invalid-token'),
                 404
             );
         }
         $user = User::where('email', $passwordReset->email)->first();
         if (!$user) {
-            return response()->json(
-                [
-                    __('user.invalid-email')
-                ],
+            return $this->out(
+                [],
+                __('user.invalid-email'),
                 404
             );
         }
@@ -121,29 +117,23 @@ class PasswordResetController extends Controller
             ]
         );
 
-        return response()->json($user);
+        return $this->out([], __('user.password-reset-success'));
     }
 
-    public function changePassword(Request $request)
+    public function changePassword(ChangePasswordRequest $request)
     {
-        $credentials = request(['email', 'password']);
-        $credentials['active'] = 1;
-        $credentials['deleted_at'] = null;
-
-        if (!Auth::attempt($credentials)) {
-            return response()->json(
-                [
-                    __('user.unauthorized')
-                ],
+        if (!Hash::check($request->password, auth()->user()->getAuthPassword())) {
+            return $this->out(
+                [],
+                __('user.unauthorized'),
                 401
             );
         }
 
-        $user = User::where('email', $request->input('email'))->first();
+        $user = auth()->user();
         $user->password = bcrypt($request->new_password);
         $user->save();
 
-        return response()->json($user);
+        return $this->out($user);
     }
-
 }
