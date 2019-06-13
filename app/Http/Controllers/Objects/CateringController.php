@@ -21,6 +21,9 @@ class CateringController extends Controller
         $this->reviewRepository = $reviewRepository;
     }
 
+    /**
+     * List of available caterings
+     */
     public function index()
     {
         $caterings = Catering::with('generalInformation', 'workingHours')->paginate(5);
@@ -28,6 +31,9 @@ class CateringController extends Controller
         return $this->outPaginated(CateringResource::collection($caterings));
     }
 
+    /**
+     * Show particular catering
+     */
     public function show(Catering $catering)
     {
         $catering->load('generalInformation', 'workingHours');
@@ -35,11 +41,17 @@ class CateringController extends Controller
         return $this->out(new CateringResource($catering));
     }
 
+    /**
+     * Show particular catering reviews
+     */
     public function objectReviews(Catering $catering)
     {
         return $this->outPaginated(ReviewsResource::collection($catering->reviews()->paginate(5)));
     }
 
+    /**
+     * List of available caterings with review stats
+     */
     public function indexReview()
     {
         $accommodations = Catering::with('reviews')->get();
@@ -47,11 +59,17 @@ class CateringController extends Controller
         return $this->out(ObjectAvgRatingResource::collection($accommodations));
     }
 
+    /**
+     * Show particular review
+     */
     public function showReview(Review $review)
     {
         return $this->out(new ReviewsResource($review));
     }
 
+    /**
+     * Store Review
+     */
     public function storeReview(Catering $catering, ReviewStoreRequest $request)
     {
         $payload = [];
@@ -68,6 +86,9 @@ class CateringController extends Controller
         return $this->out(new ReviewsResource($review), __('review.created'));
     }
 
+    /**
+     * Show particular catering with review statistics
+     */
     public function reviewStatistics(Catering $catering)
     {
         $catering->number_of_reviews = $catering->reviews()->count();

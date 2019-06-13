@@ -37,6 +37,17 @@ class Controller extends BaseController
         return response()->json($response, $status_code);
     }
 
+    public function paginated($data, $per_page = 5)
+    {
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentPageItems = $data->slice(($currentPage - 1) * $per_page, $per_page);
+
+        $paginate = new LengthAwarePaginator($currentPageItems, count($data), $per_page);
+        $paginate = $paginate->setPath(url()->full());
+
+        return $this->outPaginated($paginate);
+    }
+
     public function outPaginated($paginator, $message = 'Success', $status_code = 200, $errors = null)
     {
         $response = [

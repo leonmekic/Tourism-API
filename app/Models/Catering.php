@@ -26,3 +26,4 @@ class Catering extends Model
         return $this->morphMany('App\Models\Review', 'reviewable', 'model_type', 'model_id');
     }
 }
+

@@ -9,6 +9,8 @@ class Accommodation extends Model
 {
     use HasAttachment;
 
+    protected $table = 'accommodations';
+
     public function generalInformation()
     {
         return $this->morphMany('App\Models\GeneralInfo', 'informable', 'model_type', 'model_id');
@@ -24,3 +26,5 @@ class Accommodation extends Model
         return $this->morphMany('App\Models\Review', 'reviewable', 'model_type', 'model_id');
     }
 }
+
+

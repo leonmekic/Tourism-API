@@ -16,6 +16,9 @@ class ShopController extends Controller
         $this->shopRepository = $shopRepository;
     }
 
+    /**
+     * List of available shops
+     */
     public function index()
     {
         $shops = Shop::with('generalInformation', 'workingHours')->paginate(5);
@@ -23,6 +26,9 @@ class ShopController extends Controller
         return $this->outPaginated(ShopResource::collection($shops));
     }
 
+    /**
+     * Show particular shop
+     */
     public function show(Shop $shop)
     {
         $shop->load('generalInformation', 'workingHours');

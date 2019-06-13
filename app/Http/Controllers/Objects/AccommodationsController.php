@@ -11,6 +11,7 @@ use App\Models\Accommodation;
 use App\Http\Resources\AccommodationResource;
 use App\Models\Review;
 use App\Repositories\ReviewRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class AccommodationsController extends Controller
 {
@@ -56,7 +57,14 @@ class AccommodationsController extends Controller
     {
         $accommodations = Accommodation::with('reviews')->get();
 
-        return $this->out(ObjectAvgRatingResource::collection($accommodations));
+        foreach ($accommodations as $accommodation) {
+            $accommodation->avgRating = number_format($accommodation->reviews()->avg('stars'), 1);
+        }
+
+        $accommodations = collect($accommodations->sortByDesc('avgRating')->values()->all());
+        $collection = ObjectAvgRatingResource::collection($accommodations);
+
+        return $this->paginated($collection);
     }
 
     /**

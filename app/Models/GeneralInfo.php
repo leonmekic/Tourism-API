@@ -13,8 +13,4 @@ class GeneralInfo extends Model
     {
         return $this->morphTo();
     }
-
-//    public function workingHours() {
-    //        return $this->hasMany('App\Models\WorkingHours', 'model_id');
-    //    }
 }

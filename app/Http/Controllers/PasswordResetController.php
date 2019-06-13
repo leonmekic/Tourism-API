@@ -26,10 +26,8 @@ class PasswordResetController extends Controller
     {
         $user = User::where('email', $request->email)->first();
         if (!$user) {
-            return response()->json(
-                [
-                    __('user.invalid-email')
-                ],
+            return $this->outWithError(
+                    __('user.invalid-email'),
                 404
             );
         }
@@ -59,8 +57,7 @@ class PasswordResetController extends Controller
     {
         $passwordReset = PasswordReset::where('token', $token)->first();
         if (!$passwordReset) {
-            return $this->out(
-                [],
+            return $this->outWithError(
                 __('user.invalid-token'),
                 404
             );
@@ -68,8 +65,7 @@ class PasswordResetController extends Controller
         if (Carbon::parse($passwordReset->updated_at)->addMinutes(720)->isPast()) {
             $passwordReset->delete();
 
-            return $this->out(
-                [],
+            return $this->outWithError(
                 __('user.invalid-token'),
                 404
             );
@@ -90,17 +86,14 @@ class PasswordResetController extends Controller
             ]
         )->first();
         if (!$passwordReset) {
-            return $this->out(
-                [],
-
+            return $this->outWithError(
                 __('user.invalid-token'),
                 404
             );
         }
         $user = User::where('email', $passwordReset->email)->first();
         if (!$user) {
-            return $this->out(
-                [],
+            return $this->outWithError(
                 __('user.invalid-email'),
                 404
             );
@@ -123,8 +116,7 @@ class PasswordResetController extends Controller
     public function changePassword(ChangePasswordRequest $request)
     {
         if (!Hash::check($request->password, auth()->user()->getAuthPassword())) {
-            return $this->out(
-                [],
+            return $this->outWithError(
                 __('user.unauthorized'),
                 401
             );

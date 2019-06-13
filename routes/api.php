@@ -20,6 +20,10 @@ Route::middleware('auth:api')->get(
     }
 );
 
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
 Route::group(
     [
         'prefix' => 'auth'
@@ -80,8 +84,11 @@ Route::group(
 Route::group(
     [
         'middleware' => ['auth:api', 'isAccountActive'],
+        'prefix' => 'categories'
     ],
     function () {
+        Route::get('/', 'CategoriesController@index')->name('categories.list');
+
         Route::get('accommodations', 'Objects\AccommodationsController@index')->name('accommodations.list');
         Route::get('accommodations/{accommodation}', 'Objects\AccommodationsController@show')->name('accommodation.show');
         Route::post('accommodations/{accommodation}/review', 'Objects\AccommodationsController@storeReview')->name('accommodation.store.review');
@@ -111,5 +118,12 @@ Route::group(
 
         Route::get('events', 'Objects\EventController@index')->name('events.list');
         Route::get('events/{event}', 'Objects\EventController@show')->name('event.show');
+
+        Route::get('news', 'NewsController@index')->name('news.list');
+        Route::get('news/{news}', 'NewsController@show')->name('news.show');
+        Route::post('news/{news}/review', 'NewsController@storeReview')->name('news.store.review');
+        Route::get('news/{news}/reviews', 'NewsController@objectReviews')->name('news.reviews');
+        Route::get('news/news/{review}', 'NewsController@showReview')->name('news.review');
+
     }
 );

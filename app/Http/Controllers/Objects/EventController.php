@@ -8,6 +8,9 @@ use App\Models\Event;
 
 class EventController extends Controller
 {
+    /**
+     * List of available events
+     */
     public function index()
     {
         $events = Event::with('workingHours')->paginate(5);
@@ -15,6 +18,9 @@ class EventController extends Controller
         return $this->outPaginated(EventResource::collection($events));
     }
 
+    /**
+     * Show particular event
+     */
     public function show(Event $event)
     {
         $event->load('workingHours');

@@ -43,8 +43,7 @@ class AuthController extends Controller
         $credentials['deleted_at'] = null;
 
         if (!Auth::attempt($credentials)) {
-            return $this->out(
-                [],
+            return $this->outWithError(
                 __('user.unauthorized'),
                 401
             );
@@ -93,8 +92,7 @@ class AuthController extends Controller
     {
         $user = User::where('activation_token', $token)->first();
         if (!$user) {
-            return $this->out(
-                [],
+            return $this->outWithError(
                 __('user.invalid-token'),
                 404
             );
