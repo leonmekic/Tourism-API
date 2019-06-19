@@ -11,26 +11,16 @@ class EventsSeeder extends Seeder
      */
     public function run()
     {
-        $app_1_events = factory(\App\Models\Event::class, 5)->create(
+        $app_1_events = factory(\App\Models\Event::class, 4)->create(
             [
                 'app_id' => 1
             ]
         );
-
-        foreach ($app_1_events as $event) {
-            $workingHours = factory(\App\Models\WorkingHours::class)->create();
-            $event->workingHours()->save($workingHours);
-        }
 
         $app_1_events = factory(\App\Models\Event::class, 5)->create(
             [
                 'app_id' => 2
             ]
         );
-
-        foreach ($app_1_events as $event) {
-            $workingHours = factory(\App\Models\WorkingHours::class)->create();
-            $event->workingHours()->save($workingHours);
-        }
     }
 }

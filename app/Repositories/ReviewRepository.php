@@ -41,15 +41,7 @@ class ReviewRepository extends Repository {
 
     public function deleteReview(Model $model)
     {
-//        $payload['app_id'] = 2;
-//        $payload['user_id'] = auth()->id();
-//        $payload['model_type'] = get_class($model);
-//        $payload['model_id'] = $model->id;
-
-
-
         parent::delete($model);
-
     }
 
 }

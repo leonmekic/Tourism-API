@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
                 $table->boolean('active')->default(false);
                 $table->string('activation_token');
                 $table->boolean('terms_and_conditions');
-                $table->string('app_id');
+                $table->integer('app_id');
                 $table->rememberToken();
                 $table->timestamps();
                 $table->softDeletes();

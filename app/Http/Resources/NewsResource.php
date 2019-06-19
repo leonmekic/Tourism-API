@@ -16,10 +16,11 @@ class NewsResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'          => $this->id,
-            'name'        => $this->title,
-            'body'        => $this->body,
-            'attachments' => AttachmentsResource::collection($this->whenLoaded('attachments'))
+            'id'      => $this->id,
+            'name'    => $this->title,
+            'body'    => $this->body,
+            'reviews' => ReviewsResource::collection($this->whenLoaded('reviews')),
+            'photo'   => AttachmentsResource::collection($this->whenLoaded('attachments'))
         ];
     }
 }

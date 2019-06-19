@@ -18,10 +18,9 @@ class CreateAttractionsTable extends Migration
             function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('name');
-                $table->string('address');
                 $table->text('description');
                 $table->string('type');
-                $table->integer('app_id');
+                $table->integer('app_id')->nullable();
                 $table->timestamps();
             }
         );

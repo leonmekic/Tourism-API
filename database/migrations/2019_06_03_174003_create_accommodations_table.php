@@ -20,7 +20,7 @@ class CreateAccommodationsTable extends Migration
                 $table->string('name');
                 $table->text('description');
                 $table->string('stars');
-                $table->integer('app_id');
+                $table->integer('app_id')->nullable();
                 $table->timestamps();
             }
         );

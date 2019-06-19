@@ -19,7 +19,7 @@ class CreateCateringTable extends Migration
                 $table->bigIncrements('id');
                 $table->string('name');
                 $table->string('type');
-                $table->integer('app_id');
+                $table->integer('app_id')->nullable();
                 $table->timestamps();
             }
         );

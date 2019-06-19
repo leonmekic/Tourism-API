@@ -24,7 +24,7 @@ class ShopRepository extends Repository {
 
     public function create(array $payload)
     {
-        $payload['app_id'] = 2;
+        $payload['app_id'] = 1;
 
         $shop = parent::create($payload);
 

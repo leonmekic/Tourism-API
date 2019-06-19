@@ -32,7 +32,7 @@ return [
     */
 
     'controllers' => [
-        'namespace' => 'TCG\\Voyager\\Http\\Controllers',
+        'namespace' => 'App\Http\Controllers\Voyager',
     ],
 
     /*
@@ -104,7 +104,7 @@ return [
         /*
          * Set whether or not the multilingual is supported by the BREAD input.
          */
-        'enabled' => false,
+        'enabled' => true,
 
         /*
          * Select default language
@@ -116,7 +116,7 @@ return [
          */
         'locales' => [
             'en',
-            //'pt',
+            'it',
         ],
     ],
 

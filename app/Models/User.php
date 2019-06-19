@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 
 class User extends \TCG\Voyager\Models\User
 {
     use Notifiable, HasApiTokens, SoftDeletes;
+
+    const SuperAdminId = 3;
 
     protected $dates = ['deleted_at'];
 
