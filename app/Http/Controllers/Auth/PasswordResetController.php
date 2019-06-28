@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Password\ChangePasswordRequest;
 use App\Http\Requests\Password\CreatePasswordResetRequest;
+use App\Http\Resources\UserResource;
 use App\Models\PasswordReset;
 use Carbon\Carbon;
 use App\Http\Requests\Password\PasswordResetRequest;
@@ -122,6 +123,6 @@ class PasswordResetController extends Controller
         $user->password = bcrypt($request->new_password);
         $user->save();
 
-        return $this->out($user);
+        return $this->out(new UserResource($user), __('user.password-updated'));
     }
 }

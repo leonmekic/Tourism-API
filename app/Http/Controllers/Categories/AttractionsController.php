@@ -36,9 +36,9 @@ class AttractionsController extends Controller
     public function show(Attraction $attraction)
     {
         if ($attraction->app_id !== auth()->user()->app_id) {
-            return $this->outWithError(__('user.forbidden'));
+            return $this->outWithError(__('user.forbidden'), 403);
         }
-        $attraction->load('generalInformation');
+        $attraction->load('generalInformation', 'workingHours');
 
         return $this->out(new AttractionsResource($attraction));
     }
@@ -49,10 +49,10 @@ class AttractionsController extends Controller
     public function objectReviews(Attraction $attraction)
     {
         if ($attraction->app_id !== auth()->user()->app_id) {
-            return $this->outWithError(__('user.forbidden'));
+            return $this->outWithError(__('user.forbidden'), 403);
         }
 
-        return $this->outPaginated(ReviewsResource::collection($attraction->reviews()->paginate(5)));
+        return $this->outPaginated(ReviewsResource::collection($attraction->reviews()->with('attachments')->orderBy('created_at', 'DESC')->paginate(5)));
     }
 
     /**
@@ -60,9 +60,16 @@ class AttractionsController extends Controller
      */
     public function indexReview()
     {
-        $accommodations = Attraction::with('reviews')->inAppItems()->get();
+        $attractions = Attraction::with('reviews')->inAppItems()->get();
 
-        return $this->out(ObjectAvgRatingResource::collection($accommodations));
+        foreach ($attractions as $attraction) {
+            $attraction->avgRating = number_format($attraction->reviews()->avg('stars'), 1);
+        }
+
+        $attractions = collect($attractions->sortByDesc('avgRating')->values()->all());
+        $collection = ObjectAvgRatingResource::collection($attractions);
+
+        return $this->paginated($collection);
     }
 
     /**
@@ -90,7 +97,7 @@ class AttractionsController extends Controller
     public function reviewStatistics(Attraction $attraction)
     {
         if ($attraction->app_id !== auth()->user()->app_id) {
-            return $this->outWithError(__('user.forbidden'));
+            return $this->outWithError(__('user.forbidden'), 403);
         }
         $attraction->number_of_reviews = $attraction->reviews()->count();
         $attraction->average_rating = $attraction->reviews()->avg('stars');

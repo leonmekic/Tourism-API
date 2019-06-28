@@ -23,7 +23,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $shops = News::with('attachments')->inAppItems()->paginate(5);
+        $shops = News::with('attachments')->orderBy('created_at', 'DESC')->inAppItems()->paginate(5);
 
         return $this->outPaginated(NewsResource::collection($shops));
     }
@@ -33,6 +33,9 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
+        if ($news->app_id !== auth()->user()->app_id) {
+            return $this->outWithError(__('user.forbidden'), 403);
+        }
         $news->load('reviews');
         return $this->out(new NewsResource($news));
     }
@@ -55,11 +58,9 @@ class NewsController extends Controller
 
     public function objectReviews(News $news)
     {
-        return $this->outPaginated(ReviewsResource::collection($news->reviews()->paginate(5)));
-    }
-
-    public function showReview(Review $review)
-    {
-        return $this->out(new ReviewsResource($review));
+        if ($news->app_id !== auth()->user()->app_id) {
+            return $this->outWithError(__('user.forbidden'), 403);
+        }
+        return $this->outPaginated(ReviewsResource::collection($news->reviews()->with('attachments')->orderBy('created_at', 'DESC')->paginate(5)));
     }
 }

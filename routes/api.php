@@ -118,6 +118,5 @@ Route::group(
         Route::post('news/{news}/review', 'Categories\NewsController@storeReview')->name('news.store.review') ;
         Route::get('news/{news}/reviews', 'Categories\NewsController@objectReviews')->name('news.reviews');
 
-
     }
 );

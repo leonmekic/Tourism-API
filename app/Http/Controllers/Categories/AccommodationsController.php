@@ -36,7 +36,7 @@ class AccommodationsController extends Controller
     public function show(Accommodation $accommodation)
     {
         if ($accommodation->app_id !== auth()->user()->app_id) {
-            return $this->outWithError(__('user.forbidden'));
+            return $this->outWithError(__('user.forbidden'), 403);
         }
         $accommodation->load('generalInformation', 'workingHours');
 
@@ -50,9 +50,9 @@ class AccommodationsController extends Controller
     public function objectReviews(Accommodation $accommodation)
     {
         if ($accommodation->app_id !== auth()->user()->app_id) {
-            return $this->outWithError(__('user.forbidden'));
+            return $this->outWithError(__('user.forbidden'), 403);
         }
-        return $this->outPaginated(ReviewsResource::collection($accommodation->reviews()->paginate(5)));
+        return $this->outPaginated(ReviewsResource::collection($accommodation->reviews()->with('attachments')->orderBy('created_at', 'DESC')->paginate(5)));
     }
 
     /**
@@ -97,7 +97,7 @@ class AccommodationsController extends Controller
     public function reviewStatistics(Accommodation $accommodation)
     {
         if ($accommodation->app_id !== auth()->user()->app_id) {
-            return $this->outWithError(__('user.forbidden'));
+            return $this->outWithError(__('user.forbidden'), 403);
         }
         $accommodation->number_of_reviews = $accommodation->reviews()->count();
 

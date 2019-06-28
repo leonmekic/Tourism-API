@@ -32,7 +32,7 @@ class ShopController extends Controller
     public function show(Shop $shop)
     {
         if ($shop->app_id !== auth()->user()->app_id) {
-            return $this->outWithError(__('user.forbidden'));
+            return $this->outWithError(__('user.forbidden'), 403);
         }
         $shop->load('generalInformation', 'workingHours');
 

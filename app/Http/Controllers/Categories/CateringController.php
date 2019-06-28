@@ -36,7 +36,7 @@ class CateringController extends Controller
     public function show(Catering $catering)
     {
         if ($catering->app_id !== auth()->user()->app_id) {
-            return $this->outWithError(__('user.forbidden'));
+            return $this->outWithError(__('user.forbidden'), 403);
         }
         $catering->load('generalInformation', 'workingHours');
 
@@ -49,9 +49,9 @@ class CateringController extends Controller
     public function objectReviews(Catering $catering)
     {
         if ($catering->app_id !== auth()->user()->app_id) {
-            return $this->outWithError(__('user.forbidden'));
+            return $this->outWithError(__('user.forbidden'),403);
         }
-        return $this->outPaginated(ReviewsResource::collection($catering->reviews()->paginate(5)));
+        return $this->outPaginated(ReviewsResource::collection($catering->reviews()->with('attachments')->orderBy('created_at', 'DESC')->paginate(5)));
     }
 
     /**
@@ -59,9 +59,16 @@ class CateringController extends Controller
      */
     public function indexReview()
     {
-        $accommodations = Catering::with('reviews')->inAppItems()->get();
+        $caterings = Catering::with('reviews')->inAppItems()->get();
 
-        return $this->out(ObjectAvgRatingResource::collection($accommodations));
+        foreach ($caterings as $catering) {
+            $catering->avgRating = number_format($catering->reviews()->avg('stars'), 1);
+        }
+
+        $caterings = collect($caterings->sortByDesc('avgRating')->values()->all());
+        $collection = ObjectAvgRatingResource::collection($caterings);
+
+        return $this->paginated($collection);
     }
 
     /**
@@ -89,7 +96,7 @@ class CateringController extends Controller
     public function reviewStatistics(Catering $catering)
     {
         if ($catering->app_id !== auth()->user()->app_id) {
-            return $this->outWithError(__('user.forbidden'));
+            return $this->outWithError(__('user.forbidden'), 403);
         }
         $catering->number_of_reviews = $catering->reviews()->count();
         $catering->average_rating = $catering->reviews()->avg('stars');

@@ -24,7 +24,7 @@ class EventController extends Controller
     public function show(Event $event)
     {
         if ($event->app_id !== auth()->user()->app_id) {
-            return $this->outWithError(__('user.forbidden'));
+            return $this->outWithError(__('user.forbidden'),403);
         }
 
         return $this->out(new EventResource($event));

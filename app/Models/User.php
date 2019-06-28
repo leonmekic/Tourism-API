@@ -11,6 +11,7 @@ class User extends \TCG\Voyager\Models\User
     use Notifiable, HasApiTokens, SoftDeletes;
 
     const SuperAdminId = 3;
+    const UserRoleId = 2;
 
     protected $dates = ['deleted_at'];
 

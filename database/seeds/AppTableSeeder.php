@@ -13,15 +13,22 @@ class AppTableSeeder extends Seeder
     {
         $categoryIds = \App\Models\Category::all()->pluck('id');
 
-        $app = \App\Models\App::find(1);
-
+        $app = factory(\App\Models\App::class)->create(
+            [
+                'name' => 'Tourism app'
+            ]
+        );
         foreach ($categoryIds as $categoryId) {
             $app->category()->attach($categoryId);
         }
 
         $categoryIds2 = \App\Models\Category::take(4)->pluck('id');
 
-        $app2 = \App\Models\App::find(2);
+        $app2 = factory(\App\Models\App::class)->create(
+            [
+                'name' => 'Travel app'
+            ]
+        );
         foreach ($categoryIds2 as $categoryId) {
             $app2->category()->attach($categoryId);
         }

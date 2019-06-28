@@ -58,7 +58,7 @@
                             @foreach($dataTypeRows as $row)
                                 <!-- GET THE DISPLAY OPTIONS -->
                             @php
-                            if (auth()->id() != User::SuperAdminId && $row->field == 'app_id')
+                            if ($row->field == 'app_id')
                             continue;
                             @endphp
                                 @php
@@ -99,6 +99,19 @@
                                 <label class="control-label" for="name">Photo</label>
                                 <input name="photo" type="file">
                             </div>
+
+                            @if(auth()->id() == User::SuperAdminId)
+
+                            <div style="margin-bottom: 15px">
+                                <label class="control-label" for="name">Application</label>
+                                <select class="form-control select2" name="app_id" data-select2-id="1" tabindex="0" aria-hidden="false">
+                                    <option disabled selected value selected="&quot;selected&quot;"> -- select an option -- </option>
+                                    @foreach($apps as $app)
+                                    <option value="{{ $app->id }}">{{ $app->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @endif
 
                         </div><!-- panel-body -->
 

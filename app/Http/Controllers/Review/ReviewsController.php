@@ -26,7 +26,7 @@ class ReviewsController extends Controller
             return $this->out([], __('review.deleted'));
         };
 
-        return response()->json(__('review.private'));
+        return $this->outWithError(__('user.unauthorized'), 401);
     }
 
     public function update(Review $review, ReviewStoreRequest $request)
@@ -40,7 +40,7 @@ class ReviewsController extends Controller
             return $this->out(new ReviewsResource($review->load('attachments')), __('review.updated'));
         };
 
-        return response()->json(__('review.private'));
+        return $this->outWithError(__('user.unauthorized'), 401);
     }
 
     public function deleteReviewPhoto(Review $review)
@@ -51,6 +51,6 @@ class ReviewsController extends Controller
             return $this->out(new ReviewsResource($review), __('review.photos-deleted'));
         };
 
-        return response()->json(__('review.private'));
+        return $this->outWithError(__('user.unauthorized'), 401);
     }
 }

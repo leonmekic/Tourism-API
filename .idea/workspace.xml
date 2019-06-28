@@ -2,51 +2,58 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97a39ec4-87ed-4c5a-aedf-38b44d97db5a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Categories/CategoriesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Contracts/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Contracts/Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoriesController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Categories/NewsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Objects/AccommodationsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Categories/AccommodationsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Objects/AttractionsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Categories/AttractionsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Objects/CateringController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Categories/CateringController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Objects/EventController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Categories/EventController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Objects/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Categories/ShopController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PasswordResetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordResetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReviewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Review/ReviewsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ChangePasswordRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Password/ChangePasswordRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CreatePasswordResetRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Password/CreatePasswordResetRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/LogInRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/User/LogInRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/PasswordResetRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Password/PasswordResetRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ReviewStoreRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Review/ReviewStoreRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/SignUpRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/User/SignUpRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/User/UpdateUserRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NewsResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NewsResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Event.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Event.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/GeneralInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/GeneralInfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/News.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordResetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordResetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Categories/AccommodationsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Categories/AccommodationsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Categories/AttractionsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Categories/AttractionsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Categories/CateringController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Categories/CateringController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Categories/EventController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Categories/EventController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Categories/NewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Categories/NewsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Categories/ShopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Categories/ShopController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Review/ReviewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Review/ReviewsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerAccommodationsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerAccommodationsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerAttractionsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerAttractionsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerCateringsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerCateringsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerEventsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerEventsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerNewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerNewsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerShopsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerShopsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerUserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/AttractionsResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/AttractionsResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/WorkingHours.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/WorkingHours.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ReviewRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ReviewRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ShopRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ShopRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/voyager.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/voyager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/Attractions.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/Attractions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_29_120907_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_29_120907_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_30_110234_create_attractions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_30_110234_create_attractions_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_30_110246_create_catering_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_30_110246_create_catering_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_30_110258_create_shops_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_30_110258_create_shops_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_03_115843_create_news_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_03_115843_create_news_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_03_174003_create_accommodations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_03_174003_create_accommodations_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_03_190233_create_events_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_06_03_190233_create_events_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2016_01_01_000000_add_voyager_user_fields.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_000000_add_voyager_user_fields.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2016_01_01_000000_create_data_types_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_000000_create_data_types_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2016_05_19_173453_create_menu_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_173453_create_menu_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2016_10_21_190000_create_roles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_190000_create_roles_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2016_10_21_190000_create_settings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_190000_create_settings_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2016_11_30_135954_create_permission_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_135954_create_permission_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2016_11_30_141208_create_permission_role_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_141208_create_permission_role_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2016_12_26_201236_data_types__add__server_side.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_201236_data_types__add__server_side.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2017_01_13_000000_add_route_to_menu_items_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_000000_add_route_to_menu_items_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2017_01_14_005015_create_translations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_005015_create_translations_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2017_01_15_000000_make_table_name_nullable_in_permissions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_000000_make_table_name_nullable_in_permissions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2017_03_06_000000_add_controller_to_data_types_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_000000_add_controller_to_data_types_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2017_04_21_000000_add_order_to_data_rows_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_000000_add_order_to_data_rows_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2017_07_05_210000_add_policyname_to_data_types_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_210000_add_policyname_to_data_types_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2017_08_05_000000_add_group_to_settings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_000000_add_group_to_settings_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2017_11_26_013050_add_user_role_relationship.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_013050_add_user_role_relationship.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2017_11_26_015000_create_user_roles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_015000_create_user_roles_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2018_03_11_000000_add_user_settings.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_000000_add_user_settings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2018_03_14_000000_add_details_to_data_types_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_000000_add_details_to_data_types_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/voyager/2018_03_16_000000_make_settings_value_nullable.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/voyager/2019_06_20_000000_make_settings_value_nullable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/AppTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/AppTableSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/EventsSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/EventsSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/NewsTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/NewsTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/review.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/review.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/en/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/voyager/accommodations/edit-add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/voyager/accommodations/edit-add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/voyager/attractions/edit-add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/voyager/attractions/edit-add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/voyager/catering/edit-add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/voyager/catering/edit-add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/voyager/events/edit-add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/voyager/events/edit-add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/voyager/news/edit-add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/voyager/news/edit-add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/voyager/shops/edit-add.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,118 +68,84 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerShopsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+            <state relative-caret-position="-4022" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Providers/RouteServiceProvider.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Providers/EventServiceProvider.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Repositories/GeneralInfoRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/AppTableSeeder.php">
+        <entry file="file://$PROJECT_DIR$/app/Repositories/ReviewRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+            <state relative-caret-position="435">
+              <caret line="31" column="51" lean-forward="true" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/Attractions.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="17" selection-end-column="10" />
+            <state relative-caret-position="417">
+              <caret line="56" column="20" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/factories/Accommodations.php">
+        <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" selection-start-line="6" selection-end-line="17" selection-end-column="2" />
+            <state relative-caret-position="720">
+              <caret line="48" column="30" lean-forward="true" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Categories/AccommodationsController.php">
+        <entry file="file://$PROJECT_DIR$/app/Models/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-959">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="630">
+              <caret line="42" column="6" lean-forward="true" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+              <folding>
+                <element signature="e#30#75#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/factories/CategoryFactory.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/app/Repositories/ShopRepository.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/CategoryTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="25" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/EventsSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/UsersTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-79">
-              <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/RolesTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/app/Repositories/WorkingHoursRepository.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$review-&gt;attach($request-&gt;file('photo'), ['disk' =&gt; 'publicAPI']);</find>
-      <find>review-&gt;attach($request-&gt;file('photo'), ['disk' =&gt; 'publicAPI']);</find>
-      <find>view</find>
-      <find>App\Http\Controllers</find>
-      <find>outPaginated</find>
-      <find>$this-&gt;out</find>
-      <find>setCollection</find>
-      <find>driver</find>
-      <find>VoyagerBaseController</find>
-      <find>!= 3</find>
-      <find>Objects\</find>
-      <find>'Objects</find>
-      <find>'Objects\</find>
-      <find>ResetPasswordController</find>
-      <find>Model::</find>
-      <find>VoyagerAccommodationCreateRequest</find>
-      <find>InAppDataRequest</find>
-      <find>ChangePasswordRequest</find>
-      <find>CreatePasswordResetRequest</find>
       <find>PasswordResetRequest</find>
       <find>ReviewCreateRequest</find>
       <find>ReviewStoreRequest</find>
@@ -184,6 +157,25 @@
       <find>PasswordResetController</find>
       <find>User::SuperAdminId</find>
       <find>database.autoload</find>
+      <find>sort</find>
+      <find>dd</find>
+      <find>sortB</find>
+      <find>$review-&gt;user_id == auth()-&gt;id() or auth()-&gt;id() == User::SuperAdminId</find>
+      <find>disk</find>
+      <find>autoload_migrations</find>
+      <find>nav navbar-nav</find>
+      <find>admin.blade</find>
+      <find>adminmenu</find>
+      <find>side-menu sidebar-inverse</find>
+      <find>const NormalUserId = 2;</find>
+      <find>SuperAdminId</find>
+      <find>class=&quot;panel-content&quot;</find>
+      <find>NormalUserId</find>
+      <find>UserRoleId</find>
+      <find>NewUserRegistered</find>
+      <find>showReview</find>
+      <find>ChangePasswordRequest</find>
+      <find>reset</find>
     </findStrings>
     <replaceStrings>
       <replace>request()</replace>
@@ -213,6 +205,7 @@
     <dirStrings>
       <dir>$PROJECT_DIR$/app/Http/Controllers/Categories</dir>
       <dir>$PROJECT_DIR$/resources/views/vendor/voyager/accommodations</dir>
+      <dir>$PROJECT_DIR$</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -221,57 +214,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Requests/ReviewStoreRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/ReviewCreateRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Objects/AttractionsController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Objects/CateringController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Objects/AccommodationsController.php" />
-        <option value="$PROJECT_DIR$/storage/framework/views/e02349bfd134b705aec4184684a3d9838766fc71.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/ReviewRepository.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ReviewsController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CategoriesController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerNewsController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Categories/AccommodationsController.php" />
-        <option value="$PROJECT_DIR$/resources/views/vendor/voyager/attractions/edit-add.blade.php" />
-        <option value="$PROJECT_DIR$/app/Models/News.php" />
-        <option value="$PROJECT_DIR$/resources/views/vendor/voyager/catering/edit-add.blade.php" />
-        <option value="$PROJECT_DIR$/storage/framework/views/6eddb5aca5c4f6ccbedd1241f64f7f5823471795.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerAccommodationsController.php" />
-        <option value="$PROJECT_DIR$/resources/views/vendor/voyager/accommodations/edit-add.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/vendor/voyager/events/edit-add.blade.php" />
-        <option value="$PROJECT_DIR$/app/Models/Event.php" />
-        <option value="$PROJECT_DIR$/resources/views/vendor/voyager/shops/edit-add.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/Password/ChangePasswordRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/Password/CreatePasswordResetRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/Password/PasswordResetRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordResetController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/Review/ReviewStoreRequest.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/Review/ReviewCreateRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Categories/NewsController.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/User/LogInRequest.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/User/SignUpRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/User/UpdateUserRequest.php" />
         <option value="$PROJECT_DIR$/app/Contracts/Model.php" />
-        <option value="$PROJECT_DIR$/app/Models/User.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
-        <option value="$PROJECT_DIR$/resources/views/vendor/voyager/news/edit-add.blade.php" />
         <option value="$PROJECT_DIR$/app/Notifications/SignupActivate.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Categories/CategoriesController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerCateringsController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Review/ReviewsController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Categories/EventController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/User/UserController.php" />
-        <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/config/voyager.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/database/seeds/UsersAdminTableSeeder.php" />
-        <option value="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/EventsSeeder.php" />
         <option value="$PROJECT_DIR$/database/factories/CategoryFactory.php" />
         <option value="$PROJECT_DIR$/database/seeds/AppTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/CategoryTableSeeder.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerShopsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerNewsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerEventsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerCateringsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerAttractionsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerAccommodationsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/vendor/voyager/shops/edit-add.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/vendor/voyager/users/edit-add.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/vendor/voyager/news/edit-add.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/vendor/voyager/events/edit-add.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/vendor/voyager/catering/edit-add.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/vendor/voyager/attractions/edit-add.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/vendor/voyager/accommodations/edit-add.blade.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/review.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Categories/EventController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Review/ReviewsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Categories/ShopController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Resources/AttractionsResource.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Categories/AccommodationsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Categories/AttractionsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Categories/CateringController.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/user.php" />
+        <option value="$PROJECT_DIR$/database/seeds/AppAdminRoleSeeder.php" />
+        <option value="$PROJECT_DIR$/database/seeds/NewsTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" />
+        <option value="$PROJECT_DIR$/config/voyager.php" />
+        <option value="$PROJECT_DIR$/vendor/tcg/voyager/src/Models/Menu.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerUserController.php" />
+        <option value="$PROJECT_DIR$/app/Models/User.php" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Categories/NewsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/Password/ChangePasswordRequest.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordResetController.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
       </list>
     </option>
   </component>
@@ -279,6 +272,11 @@
     <layout place="tools.popupnpm">
       <scroll-view-position x="0" y="0" />
     </layout>
+  </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="127.0.0.1" id="2f7d6da2-0085-4a8b-b5f5-46689086e7d1" name="127.0.0.1" port="8000" />
+    </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -412,6 +410,221 @@
               <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
               <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Console" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Console" type="462c0819:PsiDirectoryNode" />
+              <item name="Commands" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Contracts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Contracts" type="462c0819:PsiDirectoryNode" />
+              <item name="Repositories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Criterias" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Events" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Exceptions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Auth" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Categories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Review" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="User" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="voyager" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Middleware" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Requests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Requests" type="462c0819:PsiDirectoryNode" />
+              <item name="Password" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Requests" type="462c0819:PsiDirectoryNode" />
+              <item name="Review" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Requests" type="462c0819:PsiDirectoryNode" />
+              <item name="User" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Notifications" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Providers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Repositories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
+              <item name="en" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="Feature" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TourismAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TourismAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -436,11 +649,11 @@
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Review" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/vendor/voyager/users" />
       <recent name="$PROJECT_DIR$/database/migrations/voyager" />
       <recent name="$PROJECT_DIR$/resources/views/vendor/voyager/news" />
       <recent name="$PROJECT_DIR$/resources/views/vendor/voyager/shops" />
       <recent name="$PROJECT_DIR$/resources/views/vendor/voyager/events" />
-      <recent name="$PROJECT_DIR$/resources/views/vendor/voyager/catering" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -476,21 +689,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1441" y="23" width="1920" height="1057" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49948186" visible="true" weight="0.21800947" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49948186" visible="true" weight="0.21800947" />
       <window_info id="Structure" order="1" sideWeight="0.50051814" side_tool="true" weight="0.24960506" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.08280255" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3299363" />
       <window_info anchor="bottom" id="MagicentoScripts" order="8" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.19481865" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.17409326" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -500,367 +714,263 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/tcg/voyager/src/Models/Menu.php</url>
+          <line>20</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/tcg/voyager/src/Models/Menu.php</url>
+          <line>33</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/tcg/voyager/src/Models/Menu.php</url>
+          <line>38</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/tcg/voyager/src/Models/Menu.php</url>
+          <line>54</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/tcg/voyager/src/Helpers/helpers.php</url>
+          <line>12</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/vendor/voyager/catering/edit-add.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="128" column="32" selection-start-line="128" selection-start-column="32" selection-end-line="133" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Event.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/InAppDataRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="22" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Password/ChangePasswordRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Password/CreatePasswordResetRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Password/PasswordResetRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="26" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Review/ReviewStoreRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="24" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Review/ReviewCreateRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="25" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/User/LogInRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/User/SignUpRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/User/UpdateUserRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/vendor/voyager/news/edit-add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="59" column="32" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Contracts/Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-          <folding>
-            <element signature="e#30#75#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="233" lean-forward="true" selection-start-line="233" selection-end-line="233" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Notifications/SignupActivate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="44" column="20" lean-forward="true" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordResetController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+        <state relative-caret-position="-876">
           <folding>
             <element signature="e#45#81#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerCateringsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="61" column="37" selection-start-line="61" selection-start-column="37" selection-end-line="61" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Categories/CategoriesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-          <folding>
-            <element signature="e#51#75#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Review/ReviewsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="51" column="10" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
+        <state>
           <folding>
             <element signature="e#47#83#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Categories/EventController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Categories/AccommodationsController.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Categories/NewsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-41">
-          <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
+        <state relative-caret-position="630">
+          <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Categories/ShopController.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Categories/EventController.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Categories/CateringController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-63">
-          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
-          <folding>
-            <element signature="e#45#81#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="-93" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/TrimStrings.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/user.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Authenticate.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/CheckForMaintenanceMode.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/EncryptCookies.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/IsAccountActive.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Password/CreatePasswordResetRequest.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Password/PasswordResetRequest.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Review/ReviewCreateRequest.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Password/ChangePasswordRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/User/UserController.php">
+    <entry file="file://$PROJECT_DIR$/app/Models/Accommodation.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/App.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Attachment.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Attraction.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Category.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Catering.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Event.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/GeneralInfo.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/News.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/PasswordReset.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Review.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Shop.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Translation.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/WorkingHours.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="e#45#81#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="195">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/voyager/2018_03_11_000000_add_user_settings.php">
+    <entry file="file://$PROJECT_DIR$/app/Notifications/PasswordResetRequest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        <state relative-caret-position="-139" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Notifications/PasswordResetSuccess.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-210" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Notifications/SignupActivate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/AuthServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/voyager.php">
+    <entry file="file://$PROJECT_DIR$/app/Providers/BroadcastServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="87" column="130" selection-start-line="87" selection-start-column="130" selection-end-line="87" selection-end-column="130" />
+        <state relative-caret-position="300">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/RouteServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/EventServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/GeneralInfoRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/voyager/VoyagerShopsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4022" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/WorkingHoursRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/ShopRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/attachments/app/public/attachments/77n/ejf/o4s/77nejfo4s5l5tficm4la98gy0.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/attachments/app/public/attachments/ex0/zmy/cn4/ex0zmycn4tpi4rulhyfn61w2d.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/ReviewRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="31" column="51" lean-forward="true" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="56" column="20" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="111" selection-start-line="111" selection-end-line="111" />
+        <state relative-caret-position="720">
+          <caret line="48" column="30" lean-forward="true" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
+    <entry file="file://$PROJECT_DIR$/app/Models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/GeneralInfo.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/DataRowsTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="25" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/DataTypesTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="26" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/MenuItemsTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="26" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/MenusTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/NewsTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="21" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/PermissionRoleTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="31" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/PermissionsTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/ReviewsSeeder.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/Accommodation.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/SettingsTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="25" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/TranslationsTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1656">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/VoyagerDatabaseSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/EventsSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/factories/Accommodations.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="17" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/factories/CategoryFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/AppTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/Attractions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="17" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/CategoryTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="25" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/RolesTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/UsersTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-79">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Categories/AccommodationsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-959">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="630">
+          <caret line="42" column="6" lean-forward="true" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+          <folding>
+            <element signature="e#30#75#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
