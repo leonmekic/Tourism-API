@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Voyager;
 
+use App\Models\Accommodation;
+use App\Models\GeneralInfo;
 use App\Models\User;
 use App\Repositories\GeneralInfoRepository;
 use App\Repositories\WorkingHoursRepository;
@@ -11,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Events\BreadDataAdded;
+use TCG\Voyager\Events\BreadDataUpdated;
 use TCG\Voyager\Facades\Voyager;
 
 class VoyagerAccommodationsController extends VoyagerBaseController
@@ -234,6 +237,18 @@ class VoyagerAccommodationsController extends VoyagerBaseController
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'apps'));
     }
 
+    //***************************************
+    //                ______
+    //               |  ____|
+    //               | |__
+    //               |  __|
+    //               | |____
+    //               |______|
+    //
+    //  Edit an item of our Data Type BR(E)AD
+    //
+    //****************************************
+
     public function edit(Request $request, $id)
     {
         $slug = $this->getSlug($request);
@@ -277,13 +292,74 @@ class VoyagerAccommodationsController extends VoyagerBaseController
 
         $apps = DB::table('apps')->get();
 
-        $user = auth()->user();
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'apps'));
+    }
 
-        if ($user->id != User::SuperAdminId && $dataTypeContent->app_id != $user->app_id) {
-            return app('App\Http\Controllers\Controller')->outWithError(__('user.forbidden'), 403);
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate(
+            [
+                'address'      => 'nullable|string',
+                'phone_number' => 'nullable|string',
+                'email'        => 'nullable|string|email|unique:generalInfo,email',
+                'day'          => 'nullable|string',
+                'opens_at'     => ['nullable', Rule::requiredIf($request->day), 'date_format:H:i'],
+                'closes_at'    => ['nullable', Rule::requiredIf($request->day), 'date_format:H:i']
+            ]
+        );
+
+        $slug = $this->getSlug($request);
+
+        $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
+
+        // Compatibility with Model binding.
+        $id = $id instanceof Model ? $id->{$id->getKeyName()} : $id;
+
+        $model = app($dataType->model_name);
+        if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+            $model = $model->{$dataType->scope}();
+        }
+        if ($model && in_array(SoftDeletes::class, class_uses($model))) {
+            $data = $model->withTrashed()->findOrFail($id);
+        } else {
+            $data = call_user_func([$dataType->model_name, 'findOrFail'], $id);
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'apps'));
+        // Check permission
+        $this->authorize('edit', $data);
+
+        // Validate fields with ajax
+        $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
+        $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
+
+
+        $modelId = explode('/', $request->getRequestUri());
+        $accommodation = Accommodation::find(end($modelId));
+
+        if ($request->address) {
+            $accommodation->generalInformation()->update([
+                'address' => $request->input('address'),
+                'phone_number' => $request->input('phone_number'),
+                'email' => $request->input('email'),
+            ]);
+        }
+
+        if ($request->day) {
+            $accommodation->workingHours()->update([
+                'day' => $request->input('day'),
+                'opens_at' => \Carbon\Carbon::parse($request->input('opens_at'))->format('H:i'),
+                'closes_at' => \Carbon\Carbon::parse($request->input('closes_at'))->format('H:i'),
+            ]);
+        }
+
+        event(new BreadDataUpdated($dataType, $data));
+
+        return redirect()
+            ->route("voyager.{$dataType->slug}.index")
+            ->with([
+                'message'    => __('voyager::generic.successfully_updated')." {$dataType->display_name_singular}",
+                'alert-type' => 'success',
+            ]);
     }
 
     public function store(Request $request)
@@ -292,14 +368,12 @@ class VoyagerAccommodationsController extends VoyagerBaseController
             [
                 'address'      => 'nullable|string',
                 'phone_number' => 'nullable|string',
-                'email'        => 'nullable|string',
+                'email'        => 'nullable|string|email|unique:generalInfo,email',
                 'day'          => 'nullable|string',
-                'opens_at'     => [Rule::requiredIf($request->day)],
-                'closes_at'    => [Rule::requiredIf($request->day)]
+                'opens_at'     => [Rule::requiredIf($request->day), 'date_format:H:i', 'nullable'],
+                'closes_at'    => [Rule::requiredIf($request->day), 'date_format:H:i', 'nullable']
             ]
         );
-
-
 
         $slug = $this->getSlug($request);
 

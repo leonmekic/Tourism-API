@@ -113,9 +113,16 @@ Route::group(
         Route::get('events', 'Categories\EventController@index')->name('events.list');
         Route::get('events/{event}', 'Categories\EventController@show')->name('event.show');
 
-        Route::get('news', 'Categories\NewsController@index')->name('news.list') ;
-        Route::get('news/{news}', 'Categories\NewsController@show')->name('news.show') ;
-        Route::post('news/{news}/review', 'Categories\NewsController@storeReview')->name('news.store.review') ;
+        Route::get('news/list/{locale?}', function ($locale = 'en') {
+            return app('App\Http\Controllers\Categories\NewsController')->index($locale);
+        })->name('news.list');
+
+        Route::get('news/show/{news}/{locale?}', function ($news, $locale = 'en') {
+            $news = \App\Models\News::find($news);
+
+            return app('App\Http\Controllers\Categories\NewsController')->show($news,$locale);
+        })->name('news.show');
+        Route::post('news/{news}/review', 'Categories\NewsController@storeReview')->name('news.store.review');
         Route::get('news/{news}/reviews', 'Categories\NewsController@objectReviews')->name('news.reviews');
 
     }

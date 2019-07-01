@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
                 $table->string('phone_number');
                 $table->timestamp('email_verified_at')->nullable();
                 $table->string('password');
-                $table->boolean('active')->default(false);
+                $table->boolean('active')->default(false)->nullable();
                 $table->string('activation_token');
                 $table->boolean('terms_and_conditions');
                 $table->integer('app_id');

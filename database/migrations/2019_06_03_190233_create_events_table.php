@@ -24,6 +24,7 @@ class CreateEventsTable extends Migration
                 $table->string('address');
                 $table->integer('app_id')->nullable();
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }

@@ -30,6 +30,7 @@ class AccommodationsController extends Controller
         return $this->outPaginated(AccommodationResource::collection($accommodations));
     }
 
+
     /**
      * Show particular accommodation
      */
@@ -77,6 +78,9 @@ class AccommodationsController extends Controller
      */
     public function storeReview(Accommodation $accommodation, ReviewCreateRequest $request)
     {
+        if ($accommodation->app_id !== auth()->user()->app_id) {
+            return $this->outWithError(__('user.forbidden'), 403);
+        }
         $payload = [];
         $payload['stars'] = $request->input('stars');
         $payload['comment'] = $request->input('comment');

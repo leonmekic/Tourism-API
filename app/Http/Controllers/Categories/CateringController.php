@@ -76,6 +76,10 @@ class CateringController extends Controller
      */
     public function storeReview(Catering $catering, ReviewCreateRequest $request)
     {
+        if ($catering->app_id !== auth()->user()->app_id) {
+            return $this->outWithError(__('user.forbidden'), 403);
+        }
+
         $payload = [];
         $payload['stars'] = $request->input('stars');
         $payload['comment'] = $request->input('comment');

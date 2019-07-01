@@ -77,6 +77,10 @@ class AttractionsController extends Controller
      */
     public function storeReview(Attraction $attraction, ReviewCreateRequest $request)
     {
+        if ($attraction->app_id !== auth()->user()->app_id) {
+            return $this->outWithError(__('user.forbidden'), 403);
+        }
+
         $payload = [];
         $payload['stars'] = $request->input('stars');
         $payload['comment'] = $request->input('comment');

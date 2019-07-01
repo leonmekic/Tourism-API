@@ -23,6 +23,7 @@ class CreateGeneralInfoTable extends Migration
                 $table->integer('model_id');
                 $table->string('model_type');
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Voyager;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Events\BreadDataAdded;
+use TCG\Voyager\Events\BreadDataUpdated;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\VoyagerUserController as BaseVoyagerUserController;
 
@@ -263,11 +265,53 @@ class VoyagerUserController extends BaseVoyagerUserController
 
         $user = auth()->user();
 
+//        dd($dataTypeContent);
+
         if ($user->id != User::SuperAdminId && $dataTypeContent->app_id != $user->app_id) {
             return app('App\Http\Controllers\Controller')->outWithError(__('user.forbidden'), 403);
         }
 
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'apps'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $slug = $this->getSlug($request);
+
+        $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
+
+        // Compatibility with Model binding.
+        $id = $id instanceof Model ? $id->{$id->getKeyName()} : $id;
+
+        $model = app($dataType->model_name);
+        if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+            $model = $model->{$dataType->scope}();
+        }
+        if ($model && in_array(SoftDeletes::class, class_uses($model))) {
+            $data = $model->withTrashed()->findOrFail($id);
+        } else {
+            $data = call_user_func([$dataType->model_name, 'findOrFail'], $id);
+        }
+
+        // Check permission
+        $this->authorize('edit', $data);
+
+        // Validate fields with ajax
+        $request['terms_and_conditions'] = true;
+        $request['active'] = true;
+        $request['activation_token'] = '';
+        $request['role_id'] = User::UserRoleId;
+        $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
+        $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
+
+        event(new BreadDataUpdated($dataType, $data));
+
+        return redirect()
+            ->route("voyager.{$dataType->slug}.index")
+            ->with([
+                'message'    => __('voyager::generic.successfully_updated')." {$dataType->display_name_singular}",
+                'alert-type' => 'success',
+            ]);
     }
 
     public function store(Request $request)

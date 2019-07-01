@@ -140,7 +140,7 @@ $add  = is_null($dataTypeContent->getKey());
                             <div class="form-group  col-md-12 ">
 
                                 <label class="control-label" for="name">Opens At</label>
-                                <input required="" type="text" class="form-control" name="opens_at" placeholder="Opens At" value="">
+                                <input type="text" class="form-control" name="opens_at" placeholder="Opens At" value="">
 
 
                             </div>
@@ -149,7 +149,7 @@ $add  = is_null($dataTypeContent->getKey());
                             <div class="form-group  col-md-12 ">
 
                                 <label class="control-label" for="name">Closes At</label>
-                                <input required="" type="text" class="form-control" name="closes_at" placeholder="Closes At" value="">
+                                <input type="text" class="form-control" name="closes_at" placeholder="Closes At" value="">
 
 
                             </div>
@@ -158,10 +158,14 @@ $add  = is_null($dataTypeContent->getKey());
                             <div style="margin-bottom: 15px">
                                 <label class="control-label" for="name">Application</label>
                                 <select class="form-control select2" name="app_id" data-select2-id="1" tabindex="0" aria-hidden="false">
-                                    <option disabled selected value selected="&quot;selected&quot;"> -- select an option -- </option>
+                                    @if (!$dataTypeContent->app_id)
+                                    <option disabled selected="&quot;selected&quot;"> -- select an option -- </option>
                                     @foreach($apps as $app)
                                     <option value="{{ $app->id }}">{{ $app->name }}</option>
                                     @endforeach
+                                    @else
+                                    <option value="{{ $dataTypeContent->app_id }}">Old App Id</option>
+                                    @endif
                                 </select>
                             </div>
                             @endif

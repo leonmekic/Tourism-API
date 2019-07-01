@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Categories;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Review\ReviewCreateRequest;
 use App\Http\Resources\NewsResource;
+use App\Http\Resources\NewsTranslatedResource;
 use App\Http\Resources\ReviewsResource;
 use App\Models\News;
 use App\Models\Review;
 use App\Repositories\ReviewRepository;
+use Illuminate\Support\Facades\App;
 
 class NewsController extends Controller
 {
@@ -21,27 +23,47 @@ class NewsController extends Controller
     /**
      * News list
      */
-    public function index()
+    public function index($locale)
     {
-        $shops = News::with('attachments')->orderBy('created_at', 'DESC')->inAppItems()->paginate(5);
+        App::setLocale($locale);
 
-        return $this->outPaginated(NewsResource::collection($shops));
+        $news = News::with('attachments')->orderBy('created_at', 'DESC')->inAppItems();
+
+        if (App::isLocale('it')) {
+            $news->has('translations')->with('translations');
+            return $this->outPaginated(NewsTranslatedResource::collection($news->paginate(5)));
+        }
+
+        return $this->outPaginated(NewsResource::collection($news->paginate(5)));
     }
 
     /**
      * Show particular news
      */
-    public function show(News $news)
+    public function show(News $news, $locale)
     {
+        App::setLocale($locale);
+
         if ($news->app_id !== auth()->user()->app_id) {
             return $this->outWithError(__('user.forbidden'), 403);
         }
+
         $news->load('reviews');
+
+        if (App::isLocale('it')) {
+            $news->load('translations');
+            return $this->out(new NewsTranslatedResource($news));
+        }
+
         return $this->out(new NewsResource($news));
     }
 
     public function storeReview(News $news, ReviewCreateRequest $request)
     {
+        if ($news->app_id !== auth()->user()->app_id) {
+            return $this->outWithError(__('user.forbidden'), 403);
+        }
+
         $payload = [];
         $payload['stars'] = $request->input('stars');
         $payload['comment'] = $request->input('comment');

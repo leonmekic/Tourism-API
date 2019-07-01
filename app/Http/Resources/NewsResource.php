@@ -20,7 +20,8 @@ class NewsResource extends JsonResource
             'name'    => $this->title,
             'body'    => $this->body,
             'reviews' => ReviewsResource::collection($this->whenLoaded('reviews')),
-            'photo'   => AttachmentsResource::collection($this->whenLoaded('attachments'))
+            'photo'   => AttachmentsResource::collection($this->whenLoaded('attachments')),
+            'trans'   => $this->whenLoaded('translations')
         ];
     }
 }

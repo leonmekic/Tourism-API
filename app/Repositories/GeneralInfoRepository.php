@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Contracts\Model;
 use App\Contracts\Repositories\Repository;
+use App\Models\App;
 use App\Models\GeneralInfo;
 
 class GeneralInfoRepository extends Repository {
@@ -34,6 +35,16 @@ class GeneralInfoRepository extends Repository {
 
         return $generalInformation;
     }
+
+//    public function updateGeneralInfo($model, array $payload)
+//    {
+////        $payload['model_type'] = get_class($model);
+////        $payload['model_id'] = $model->id;
+//
+//        $generalInformation = parent::update(get_class($model), $payload);
+//
+//        return $generalInformation;
+//    }
 
     public function deleteGeneralInfo(Model $model)
     {

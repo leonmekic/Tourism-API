@@ -22,6 +22,7 @@ class CreateAccommodationsTable extends Migration
                 $table->string('stars');
                 $table->integer('app_id')->nullable();
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }

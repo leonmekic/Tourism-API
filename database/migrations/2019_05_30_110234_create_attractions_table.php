@@ -22,6 +22,7 @@ class CreateAttractionsTable extends Migration
                 $table->string('type');
                 $table->integer('app_id')->nullable();
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }

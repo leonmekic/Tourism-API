@@ -23,7 +23,7 @@ class AuthController extends Controller
                 'terms_and_conditions' => $request->terms_and_conditions,
                 'password'             => bcrypt($request->password),
                 'activation_token'     => str_random(60),
-                'app_id'               => 1
+                'app_id'               => $request->app_id,
             ]
         );
         $user->save();

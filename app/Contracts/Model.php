@@ -2,6 +2,7 @@
 
 namespace App\Contracts;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 class Model extends EloquentModel
@@ -9,7 +10,7 @@ class Model extends EloquentModel
     public function scopeInAppItems($query)
     {
         $user = auth()->user();
-        if ($user->email == 'superadmin@mail.com' || $user->id == 3) {
+        if ($user->id == User::SuperAdminId) {
             return $query;
         }
 

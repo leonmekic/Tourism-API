@@ -70,7 +70,7 @@
                             @endphp
 
                                 <label class="control-label" for="name">Phone Number</label>
-                                <input required="" type="text" class="form-control" name="phone_number" placeholder="Phone Number" value="">
+                                <input type="text" class="form-control" name="phone_number" placeholder="Phone Number" value="{{ $dataTypeContent->phone_number ?? '' }}">
 
                             <div class="form-group">
                                 <label for="locale">{{ __('voyager::generic.locale') }}</label>
@@ -81,15 +81,20 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             @if(auth()->id() == User::SuperAdminId)
 
                             <div style="margin-bottom: 15px">
                                 <label class="control-label" for="name">Application</label>
                                 <select class="form-control select2" name="app_id" data-select2-id="1" tabindex="0" aria-hidden="false">
-                                    <option disabled selected value selected="&quot;selected&quot;"> -- select an option -- </option>
+                                    @if (!$dataTypeContent->app_id)
+                                    <option disabled selected="&quot;selected&quot;"> -- select an option -- </option>
                                     @foreach($apps as $app)
                                     <option value="{{ $app->id }}">{{ $app->name }}</option>
                                     @endforeach
+                                    @else
+                                    <option value="{{ $dataTypeContent->app_id }}">Old App Id</option>
+                                    @endif
                                 </select>
                             </div>
                             @endif

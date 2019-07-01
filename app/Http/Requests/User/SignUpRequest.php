@@ -26,9 +26,10 @@ class SignUpRequest extends FormRequest
         return [
             'name'                 => 'required|string',
             'phone_number'         => 'required|string',
-            'email'                => 'required|string|email|unique:users',
+            'email'                => 'required|string|email|unique:users,email',
             'password'             => 'required|string|confirmed',
-            'terms_and_conditions' => 'required|accepted'
+            'terms_and_conditions' => 'required|accepted',
+            'app_id'               => 'required|integer|exists:apps,id'
         ];
     }
 }
