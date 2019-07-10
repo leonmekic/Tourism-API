@@ -17,6 +17,12 @@ class Model extends EloquentModel
         return $query->where('app_id', $user->app_id);
     }
 
+    public function scopeWaitingApproval($query)
+    {
+        return $query->where('approved', 0);
+    }
+
+
     /**
      * Return model table name
      *

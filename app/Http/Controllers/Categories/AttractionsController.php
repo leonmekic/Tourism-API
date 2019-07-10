@@ -9,6 +9,7 @@ use App\Http\Resources\ObjectStatisticsResource;
 use App\Http\Resources\ReviewsResource;
 use App\Models\Attraction;
 use App\Http\Resources\AttractionsResource;
+use App\Models\User;
 use App\Repositories\ReviewRepository;
 
 class AttractionsController extends Controller
@@ -35,7 +36,7 @@ class AttractionsController extends Controller
      */
     public function show(Attraction $attraction)
     {
-        if ($attraction->app_id !== auth()->user()->app_id) {
+        if ($attraction->app_id !== auth()->user()->app_id && auth()->id() != User::SuperAdminId) {
             return $this->outWithError(__('user.forbidden'), 403);
         }
         $attraction->load('generalInformation', 'workingHours');
@@ -48,7 +49,7 @@ class AttractionsController extends Controller
      */
     public function objectReviews(Attraction $attraction)
     {
-        if ($attraction->app_id !== auth()->user()->app_id) {
+        if ($attraction->app_id !== auth()->user()->app_id && auth()->id() != User::SuperAdminId) {
             return $this->outWithError(__('user.forbidden'), 403);
         }
 
@@ -77,7 +78,11 @@ class AttractionsController extends Controller
      */
     public function storeReview(Attraction $attraction, ReviewCreateRequest $request)
     {
-        if ($attraction->app_id !== auth()->user()->app_id) {
+        if ($this->reviewRepository->userAlreadyReviewed($attraction)) {
+            return $this->outWithError('You have already made a review');
+        }
+
+        if ($attraction->app_id !== auth()->user()->app_id && auth()->id() != User::SuperAdminId) {
             return $this->outWithError(__('user.forbidden'), 403);
         }
 
@@ -100,7 +105,7 @@ class AttractionsController extends Controller
      */
     public function reviewStatistics(Attraction $attraction)
     {
-        if ($attraction->app_id !== auth()->user()->app_id) {
+        if ($attraction->app_id !== auth()->user()->app_id && auth()->id() != User::SuperAdminId) {
             return $this->outWithError(__('user.forbidden'), 403);
         }
         $attraction->number_of_reviews = $attraction->reviews()->count();

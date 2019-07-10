@@ -20,9 +20,10 @@ class AccommodationResource extends JsonResource
             'name'          => $this->name,
             'description'   => $this->description,
             'stars'         => $this->stars,
-            'general info'  => GeneralInfoResource::collection($this->whenLoaded('generalInformation')),
-            'working hours' => WorkingHoursResource::collection($this->whenLoaded('workingHours')),
+            'general_info'  => GeneralInfoResource::collection($this->whenLoaded('generalInformation')),
+            'working_hours' => WorkingHoursResource::collection($this->whenLoaded('workingHours')),
             'reviews'       => ReviewsResource::collection($this->whenLoaded('reviews')),
+            'rooms'         => RoomResource::collection($this->whenLoaded('rooms')),
             'created_at'    => $this->created_at,
         ];
     }

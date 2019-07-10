@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class NewsTranslatedAttributesResource extends JsonResource
+class RoomResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,7 +16,10 @@ class NewsTranslatedAttributesResource extends JsonResource
     public function toArray($request)
     {
         return [
-            $this->column_name => $this->value,
+            'id'          => $this->id,
+            'room_number' => $this->room_number,
+            'capacity'    => $this->capacity,
+            'calendar'    => $this->when($this->calendar, $this->calendar),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Voyager;
 
+use App\Models\App;
 use App\Models\User;
 use App\Repositories\WorkingHoursRepository;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -287,6 +288,7 @@ class VoyagerEventsController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
     {
         $validatedData = $request->validate(
             [
+                'app_id'       => [Rule::requiredIf(auth()->id() == User::SuperAdminId), Rule::in(App::AppIds)],
                 'day'          => 'nullable|string',
                 'opens_at'     => ['nullable', Rule::requiredIf($request->day), 'date_format:H:i'],
                 'closes_at'    => ['nullable', Rule::requiredIf($request->day), 'date_format:H:i']
@@ -343,6 +345,7 @@ class VoyagerEventsController extends \TCG\Voyager\Http\Controllers\VoyagerBaseC
     {
         $validatedData = $request->validate(
             [
+                'app_id'       => [Rule::requiredIf(auth()->id() == User::SuperAdminId), Rule::in(App::AppIds)],
                 'day'          => 'nullable|string',
                 'opens_at'     => [Rule::requiredIf($request->day), 'date_format:H:i', 'nullable'],
                 'closes_at'    => [Rule::requiredIf($request->day), 'date_format:H:i', 'nullable']

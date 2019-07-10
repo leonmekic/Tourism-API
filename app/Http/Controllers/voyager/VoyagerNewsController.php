@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Voyager;
 
 use App\Contracts\Model;
+use App\Models\App;
+use App\Models\News;
 use App\Models\User;
 use App\Repositories\GeneralInfoRepository;
 use App\Repositories\WorkingHoursRepository;
@@ -12,16 +14,19 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Events\BreadDataAdded;
+use TCG\Voyager\Events\BreadDataUpdated;
 use TCG\Voyager\Facades\Voyager;
-
 
 class VoyagerNewsController extends VoyagerBaseController
 {
     protected $generalInfoRepository;
+
     protected $workingHoursRepository;
 
-    public function __construct(GeneralInfoRepository $generalInfoRepository , WorkingHoursRepository $workingHoursRepository)
-    {
+    public function __construct(
+        GeneralInfoRepository $generalInfoRepository,
+        WorkingHoursRepository $workingHoursRepository
+    ) {
         $this->generalInfoRepository = $generalInfoRepository;
         $this->workingHoursRepository = $workingHoursRepository;
     }
@@ -39,8 +44,14 @@ class VoyagerNewsController extends VoyagerBaseController
 
         $getter = $dataType->server_side ? 'paginate' : 'get';
 
-        $search = (object) ['value' => $request->get('s'), 'key' => $request->get('key'), 'filter' => $request->get('filter')];
-        $searchable = $dataType->server_side ? array_keys(SchemaManager::describeTable(app($dataType->model_name)->getTable())->toArray()) : '';
+        $search = (object)[
+            'value'  => $request->get('s'),
+            'key'    => $request->get('key'),
+            'filter' => $request->get('filter')
+        ];
+        $searchable = $dataType->server_side ? array_keys(
+            SchemaManager::describeTable(app($dataType->model_name)->getTable())->toArray()
+        ) : '';
         $orderBy = $request->get('order_by', $dataType->order_column);
         $sortOrder = $request->get('sort_order', null);
         $usesSoftDeletes = false;
@@ -61,14 +72,20 @@ class VoyagerNewsController extends VoyagerBaseController
         if (strlen($dataType->model_name) != 0) {
             $model = app($dataType->model_name);
 
-            if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+            if ($dataType->scope && $dataType->scope != '' && method_exists(
+                    $model,
+                    'scope' . ucfirst($dataType->scope)
+                )) {
                 $query = $model->{$dataType->scope}();
             } else {
                 $query = $model::select('*');
             }
 
             // Use withTrashed() if model uses SoftDeletes and if toggle is selected
-            if ($model && in_array(SoftDeletes::class, class_uses($model)) && app('VoyagerAuth')->user()->can('delete', app($dataType->model_name))) {
+            if ($model && in_array(SoftDeletes::class, class_uses($model)) && app('VoyagerAuth')->user()->can(
+                    'delete',
+                    app($dataType->model_name)
+                )) {
                 $usesSoftDeletes = true;
 
                 if ($request->get('showSoftDeleted')) {
@@ -82,16 +99,18 @@ class VoyagerNewsController extends VoyagerBaseController
 
             if ($search->value != '' && $search->key && $search->filter) {
                 $search_filter = ($search->filter == 'equals') ? '=' : 'LIKE';
-                $search_value = ($search->filter == 'equals') ? $search->value : '%'.$search->value.'%';
+                $search_value = ($search->filter == 'equals') ? $search->value : '%' . $search->value . '%';
                 $query->where($search->key, $search_filter, $search_value);
             }
 
             if ($orderBy && in_array($orderBy, $dataType->fields())) {
                 $querySortOrder = (!empty($sortOrder)) ? $sortOrder : 'desc';
-                $dataTypeContent = call_user_func([
-                    $query->orderBy($orderBy, $querySortOrder),
-                    $getter,
-                ]);
+                $dataTypeContent = call_user_func(
+                    [
+                        $query->orderBy($orderBy, $querySortOrder),
+                        $getter,
+                    ]
+                );
             } elseif ($model->timestamps) {
                 $dataTypeContent = call_user_func([$query->latest($model::CREATED_AT), $getter]);
             } else {
@@ -124,25 +143,30 @@ class VoyagerNewsController extends VoyagerBaseController
         }
 
         if (auth()->id() != User::SuperAdminId) {
-            $dataTypeContent = $dataTypeContent->filter(function ($value , $key) {
-                return $value->app_id == auth()->user()->app_id;
-            });
+            $dataTypeContent = $dataTypeContent->filter(
+                function ($value, $key) {
+                    return $value->app_id == auth()->user()->app_id;
+                }
+            );
         }
 
-        return Voyager::view($view, compact(
-            'dataType',
-            'dataTypeContent',
-            'isModelTranslatable',
-            'search',
-            'orderBy',
-            'orderColumn',
-            'sortOrder',
-            'searchable',
-            'isServerSide',
-            'defaultSearchKey',
-            'usesSoftDeletes',
-            'showSoftDeleted'
-        ));
+        return Voyager::view(
+            $view,
+            compact(
+                'dataType',
+                'dataTypeContent',
+                'isModelTranslatable',
+                'search',
+                'orderBy',
+                'orderColumn',
+                'sortOrder',
+                'searchable',
+                'isServerSide',
+                'defaultSearchKey',
+                'usesSoftDeletes',
+                'showSoftDeleted'
+            )
+        );
     }
 
     public function show(Request $request, $id)
@@ -160,7 +184,10 @@ class VoyagerNewsController extends VoyagerBaseController
             if ($model && in_array(SoftDeletes::class, class_uses($model))) {
                 $model = $model->withTrashed();
             }
-            if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+            if ($dataType->scope && $dataType->scope != '' && method_exists(
+                    $model,
+                    'scope' . ucfirst($dataType->scope)
+                )) {
                 $model = $model->{$dataType->scope}();
             }
             $dataTypeContent = call_user_func([$model, 'findOrFail'], $id);
@@ -208,9 +235,7 @@ class VoyagerNewsController extends VoyagerBaseController
         // Check permission
         $this->authorize('add', app($dataType->model_name));
 
-        $dataTypeContent = (strlen($dataType->model_name) != 0)
-            ? new $dataType->model_name()
-            : false;
+        $dataTypeContent = (strlen($dataType->model_name) != 0) ? new $dataType->model_name() : false;
 
         foreach ($dataType->addRows as $key => $row) {
             $dataType->addRows[$key]['col_width'] = $row->details->width ?? 100;
@@ -246,7 +271,10 @@ class VoyagerNewsController extends VoyagerBaseController
             if ($model && in_array(SoftDeletes::class, class_uses($model))) {
                 $model = $model->withTrashed();
             }
-            if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+            if ($dataType->scope && $dataType->scope != '' && method_exists(
+                    $model,
+                    'scope' . ucfirst($dataType->scope)
+                )) {
                 $model = $model->{$dataType->scope}();
             }
             $dataTypeContent = call_user_func([$model, 'findOrFail'], $id);
@@ -285,8 +313,124 @@ class VoyagerNewsController extends VoyagerBaseController
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'apps'));
     }
 
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate(
+            [
+                'app_id' => [Rule::requiredIf(auth()->id() == User::SuperAdminId), Rule::in(App::AppIds)],
+            ]
+        );
+
+        $slug = $this->getSlug($request);
+
+        $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
+
+        // Compatibility with Model binding.
+        $id = $id instanceof Model ? $id->{$id->getKeyName()} : $id;
+
+        $model = app($dataType->model_name);
+        if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope' . ucfirst($dataType->scope))) {
+            $model = $model->{$dataType->scope}();
+        }
+        if ($model && in_array(SoftDeletes::class, class_uses($model))) {
+            $data = $model->withTrashed()->findOrFail($id);
+        } else {
+            $data = call_user_func([$dataType->model_name, 'findOrFail'], $id);
+        }
+
+        // Check permission
+        $this->authorize('edit', $data);
+
+        if (auth()->id() != User::SuperAdminId) {
+            $app_id = auth()->user()->app_id;
+        } else {
+            $app_id = $request->input('app_id');
+        }
+
+        $title_translations = json_decode($request->title_i18n, true);
+        $body_translations = json_decode($request->body_i18n, true);
+
+        $title = $title_translations[app()->getLocale()];
+        $body = $body_translations[app()->getLocale()];
+
+        $locales = array_keys($title_translations);
+
+        $data->title = $title;
+        $data->body = $body;
+        $data->app_id = $app_id;
+        $data->save();
+
+        if ($request->file('photo')) {
+            $data->attach($request->file('photo'), ['disk' => 'public']);
+        }
+
+        foreach ($locales as $locale) {
+            if ($title_translations[$locale]) {
+                $data = $data->translate($locale);
+                $data->title = $title_translations[$locale];
+                $data->body = $body_translations[$locale];
+                $data->save();
+            } else {
+                continue;
+            }
+        }
+
+        event(new BreadDataUpdated($dataType, $data));
+
+        return redirect()->route("voyager.{$dataType->slug}.index")->with(
+            [
+                'message'    => __('voyager::generic.successfully_updated') . " {$dataType->display_name_singular}",
+                'alert-type' => 'success',
+            ]
+        );
+    }
+
     public function store(Request $request)
     {
+        $validatedData = $request->validate(
+            [
+                'app_id' => [Rule::requiredIf(auth()->id() == User::SuperAdminId), Rule::in(App::AppIds)],
+            ]
+        );
+
+        if (auth()->id() != User::SuperAdminId) {
+            $app_id = auth()->user()->app_id;
+        } else {
+            $app_id = $request->input('app_id');
+        }
+
+        $title_translations = json_decode($request->title_i18n, true);
+        $body_translations = json_decode($request->body_i18n, true);
+
+        $title = $title_translations[app()->getLocale()];
+        $body = $body_translations[app()->getLocale()];
+
+        $locales = array_keys($title_translations);
+
+        $news = new News(
+            [
+                'title'  => $title,
+                'body'   => $body,
+                'app_id' => $app_id
+            ]
+        );
+        $news->save();
+
+        if ($request->file('photo')) {
+            $news->attach($request->file('photo'), ['disk' => 'public']);
+        }
+
+        foreach ($locales as $locale) {
+            if ($title_translations[$locale]) {
+                $news = $news->translate($locale);
+                $news->title = $title_translations[$locale];
+                $news->body = $body_translations[$locale];
+                $news->save();
+            } else {
+                continue;
+            }
+        }
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -294,20 +438,11 @@ class VoyagerNewsController extends VoyagerBaseController
         // Check permission
         $this->authorize('add', app($dataType->model_name));
 
-        if (auth()->id() != User::SuperAdminId) {
-            $request['app_id'] = auth()->user()->app_id;
-        }
-        $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
-
-        if ($request->file('photo')) {
-            $data->attach($request->file('photo'), ['disk' => 'public']);
-        }
-
-        event(new BreadDataAdded($dataType, $data));
+        event(new BreadDataAdded($dataType, $news));
 
         return redirect()->route("voyager.{$dataType->slug}.index")->with(
             [
-                'message' => __(
+                'message'    => __(
                         'voyager::generic.successfully_added_new'
                     ) . " {$dataType->display_name_singular}",
                 'alert-type' => 'success',

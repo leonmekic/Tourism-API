@@ -5,17 +5,10 @@ namespace App\Http\Controllers\Categories;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ShopResource;
 use App\Models\Shop;
-use App\Repositories\ShopRepository;
+use App\Models\User;
 
 class ShopController extends Controller
 {
-    protected $shopRepository;
-
-    public function __construct(ShopRepository $shopRepository)
-    {
-        $this->shopRepository = $shopRepository;
-    }
-
     /**
      * List of available shops
      */
@@ -31,7 +24,7 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        if ($shop->app_id !== auth()->user()->app_id) {
+        if ($shop->app_id !== auth()->user()->app_id && auth()->id() != User::SuperAdminId) {
             return $this->outWithError(__('user.forbidden'), 403);
         }
         $shop->load('generalInformation', 'workingHours');

@@ -26,13 +26,19 @@ class ReviewRepository extends Repository {
         return Review::class;
     }
 
+    public function userAlreadyReviewed($model)
+    {
+        return Review::where([
+            ['model_id', $model->id],
+            ['user_id', auth()->id()]
+        ])->exists();
+    }
+
     public function createReview($model, array $payload)
     {
         $payload['user_id'] = auth()->id();
         $payload['model_type'] = get_class($model);
         $payload['model_id'] = $model->id;
-
-
 
         $review = parent::create($payload);
 

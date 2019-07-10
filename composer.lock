@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e3c7ee9c5cfb729cb69e922f7ba6732",
+    "content-hash": "0bf5f18d73cfbf8e68823ad61323f195",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -2351,30 +2351,25 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.18.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "8322b7bd1805be31867c13bf3cdaab948a0dd406"
+                "reference": "79c3cd96855b49b096cae6a64b1e17da13cefb2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/8322b7bd1805be31867c13bf3cdaab948a0dd406",
-                "reference": "8322b7bd1805be31867c13bf3cdaab948a0dd406",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/79c3cd96855b49b096cae6a64b1e17da13cefb2e",
+                "reference": "79c3cd96855b49b096cae6a64b1e17da13cefb2e",
                 "shasum": ""
             },
             "require": {
-                "ext-json": "*",
-                "php": "^7.1.8 || ^8.0",
-                "symfony/translation": "^3.4 || ^4.0"
+                "php": "^7.1.8",
+                "symfony/translation": "^4.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.14 || ^3.0",
-                "kylekatarnls/multi-tester": "^1.1",
-                "phpmd/phpmd": "^2.6",
-                "phpstan/phpstan": "^0.11",
-                "phpunit/phpunit": "^7.5 || ^8.0",
-                "squizlabs/php_codesniffer": "^3.4"
+                "friendsofphp/php-cs-fixer": "^2.11",
+                "phpunit/phpunit": "^7.1.5"
             },
             "type": "library",
             "extra": {
@@ -2386,7 +2381,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Carbon\\": "src/Carbon/"
+                    "": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2407,7 +2402,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-05-16T18:44:35+00:00"
+            "time": "2018-08-23T16:45:38+00:00"
         },
         {
             "name": "nikic/php-parser",

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Voyager;
 
 use App\Models\Accommodation;
-use App\Models\GeneralInfo;
+use App\Models\App;
 use App\Models\User;
 use App\Repositories\GeneralInfoRepository;
 use App\Repositories\WorkingHoursRepository;
@@ -43,8 +43,14 @@ class VoyagerAccommodationsController extends VoyagerBaseController
 
         $getter = $dataType->server_side ? 'paginate' : 'get';
 
-        $search = (object) ['value' => $request->get('s'), 'key' => $request->get('key'), 'filter' => $request->get('filter')];
-        $searchable = $dataType->server_side ? array_keys(SchemaManager::describeTable(app($dataType->model_name)->getTable())->toArray()) : '';
+        $search = (object)[
+            'value'  => $request->get('s'),
+            'key'    => $request->get('key'),
+            'filter' => $request->get('filter')
+        ];
+        $searchable = $dataType->server_side ? array_keys(
+            SchemaManager::describeTable(app($dataType->model_name)->getTable())->toArray()
+        ) : '';
         $orderBy = $request->get('order_by', $dataType->order_column);
         $sortOrder = $request->get('sort_order', null);
         $usesSoftDeletes = false;
@@ -65,14 +71,20 @@ class VoyagerAccommodationsController extends VoyagerBaseController
         if (strlen($dataType->model_name) != 0) {
             $model = app($dataType->model_name);
 
-            if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+            if ($dataType->scope && $dataType->scope != '' && method_exists(
+                    $model,
+                    'scope' . ucfirst($dataType->scope)
+                )) {
                 $query = $model->{$dataType->scope}();
             } else {
                 $query = $model::select('*');
             }
 
             // Use withTrashed() if model uses SoftDeletes and if toggle is selected
-            if ($model && in_array(SoftDeletes::class, class_uses($model)) && app('VoyagerAuth')->user()->can('delete', app($dataType->model_name))) {
+            if ($model && in_array(SoftDeletes::class, class_uses($model)) && app('VoyagerAuth')->user()->can(
+                    'delete',
+                    app($dataType->model_name)
+                )) {
                 $usesSoftDeletes = true;
 
                 if ($request->get('showSoftDeleted')) {
@@ -86,16 +98,18 @@ class VoyagerAccommodationsController extends VoyagerBaseController
 
             if ($search->value != '' && $search->key && $search->filter) {
                 $search_filter = ($search->filter == 'equals') ? '=' : 'LIKE';
-                $search_value = ($search->filter == 'equals') ? $search->value : '%'.$search->value.'%';
+                $search_value = ($search->filter == 'equals') ? $search->value : '%' . $search->value . '%';
                 $query->where($search->key, $search_filter, $search_value);
             }
 
             if ($orderBy && in_array($orderBy, $dataType->fields())) {
                 $querySortOrder = (!empty($sortOrder)) ? $sortOrder : 'desc';
-                $dataTypeContent = call_user_func([
-                    $query->orderBy($orderBy, $querySortOrder),
-                    $getter,
-                ]);
+                $dataTypeContent = call_user_func(
+                    [
+                        $query->orderBy($orderBy, $querySortOrder),
+                        $getter,
+                    ]
+                );
             } elseif ($model->timestamps) {
                 $dataTypeContent = call_user_func([$query->latest($model::CREATED_AT), $getter]);
             } else {
@@ -128,25 +142,30 @@ class VoyagerAccommodationsController extends VoyagerBaseController
         }
 
         if (auth()->id() != User::SuperAdminId) {
-            $dataTypeContent = $dataTypeContent->filter(function ($value , $key) {
-                return $value->app_id == auth()->user()->app_id;
-            });
+            $dataTypeContent = $dataTypeContent->filter(
+                function ($value, $key) {
+                    return $value->app_id == auth()->user()->app_id;
+                }
+            );
         }
 
-        return Voyager::view($view, compact(
-            'dataType',
-            'dataTypeContent',
-            'isModelTranslatable',
-            'search',
-            'orderBy',
-            'orderColumn',
-            'sortOrder',
-            'searchable',
-            'isServerSide',
-            'defaultSearchKey',
-            'usesSoftDeletes',
-            'showSoftDeleted'
-        ));
+        return Voyager::view(
+            $view,
+            compact(
+                'dataType',
+                'dataTypeContent',
+                'isModelTranslatable',
+                'search',
+                'orderBy',
+                'orderColumn',
+                'sortOrder',
+                'searchable',
+                'isServerSide',
+                'defaultSearchKey',
+                'usesSoftDeletes',
+                'showSoftDeleted'
+            )
+        );
     }
 
     public function show(Request $request, $id)
@@ -164,7 +183,10 @@ class VoyagerAccommodationsController extends VoyagerBaseController
             if ($model && in_array(SoftDeletes::class, class_uses($model))) {
                 $model = $model->withTrashed();
             }
-            if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+            if ($dataType->scope && $dataType->scope != '' && method_exists(
+                    $model,
+                    'scope' . ucfirst($dataType->scope)
+                )) {
                 $model = $model->{$dataType->scope}();
             }
             $dataTypeContent = call_user_func([$model, 'findOrFail'], $id);
@@ -212,9 +234,7 @@ class VoyagerAccommodationsController extends VoyagerBaseController
         // Check permission
         $this->authorize('add', app($dataType->model_name));
 
-        $dataTypeContent = (strlen($dataType->model_name) != 0)
-            ? new $dataType->model_name()
-            : false;
+        $dataTypeContent = (strlen($dataType->model_name) != 0) ? new $dataType->model_name() : false;
 
         foreach ($dataType->addRows as $key => $row) {
             $dataType->addRows[$key]['col_width'] = $row->details->width ?? 100;
@@ -262,7 +282,10 @@ class VoyagerAccommodationsController extends VoyagerBaseController
             if ($model && in_array(SoftDeletes::class, class_uses($model))) {
                 $model = $model->withTrashed();
             }
-            if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+            if ($dataType->scope && $dataType->scope != '' && method_exists(
+                    $model,
+                    'scope' . ucfirst($dataType->scope)
+                )) {
                 $model = $model->{$dataType->scope}();
             }
             $dataTypeContent = call_user_func([$model, 'findOrFail'], $id);
@@ -299,6 +322,7 @@ class VoyagerAccommodationsController extends VoyagerBaseController
     {
         $validatedData = $request->validate(
             [
+                'app_id'       => [Rule::requiredIf(auth()->id() == User::SuperAdminId), Rule::in(App::AppIds)],
                 'address'      => 'nullable|string',
                 'phone_number' => 'nullable|string',
                 'email'        => 'nullable|string|email|unique:generalInfo,email',
@@ -316,7 +340,7 @@ class VoyagerAccommodationsController extends VoyagerBaseController
         $id = $id instanceof Model ? $id->{$id->getKeyName()} : $id;
 
         $model = app($dataType->model_name);
-        if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+        if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope' . ucfirst($dataType->scope))) {
             $model = $model->{$dataType->scope}();
         }
         if ($model && in_array(SoftDeletes::class, class_uses($model))) {
@@ -332,43 +356,47 @@ class VoyagerAccommodationsController extends VoyagerBaseController
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
 
-
         $modelId = explode('/', $request->getRequestUri());
         $accommodation = Accommodation::find(end($modelId));
 
         if ($request->address) {
-            $accommodation->generalInformation()->update([
-                'address' => $request->input('address'),
-                'phone_number' => $request->input('phone_number'),
-                'email' => $request->input('email'),
-            ]);
+            $accommodation->generalInformation()->update(
+                [
+                    'address'      => $request->input('address'),
+                    'phone_number' => $request->input('phone_number'),
+                    'email'        => $request->input('email'),
+                ]
+            );
         }
 
         if ($request->day) {
-            $accommodation->workingHours()->update([
-                'day' => $request->input('day'),
-                'opens_at' => \Carbon\Carbon::parse($request->input('opens_at'))->format('H:i'),
-                'closes_at' => \Carbon\Carbon::parse($request->input('closes_at'))->format('H:i'),
-            ]);
+            $accommodation->workingHours()->update(
+                [
+                    'day'       => $request->input('day'),
+                    'opens_at'  => \Carbon\Carbon::parse($request->input('opens_at'))->format('H:i'),
+                    'closes_at' => \Carbon\Carbon::parse($request->input('closes_at'))->format('H:i'),
+                ]
+            );
         }
 
         event(new BreadDataUpdated($dataType, $data));
 
-        return redirect()
-            ->route("voyager.{$dataType->slug}.index")
-            ->with([
-                'message'    => __('voyager::generic.successfully_updated')." {$dataType->display_name_singular}",
+        return redirect()->route("voyager.{$dataType->slug}.index")->with(
+            [
+                'message'    => __('voyager::generic.successfully_updated') . " {$dataType->display_name_singular}",
                 'alert-type' => 'success',
-            ]);
+            ]
+        );
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate(
             [
+                'app_id'       => [Rule::requiredIf(auth()->id() == User::SuperAdminId), Rule::in(App::AppIds)],
                 'address'      => 'nullable|string',
                 'phone_number' => 'nullable|string',
-                'email'        => 'nullable|string|email|unique:generalInfo,email',
+                'email'        => 'nullable|string|email|unique:general_info,email',
                 'day'          => 'nullable|string',
                 'opens_at'     => [Rule::requiredIf($request->day), 'date_format:H:i', 'nullable'],
                 'closes_at'    => [Rule::requiredIf($request->day), 'date_format:H:i', 'nullable']

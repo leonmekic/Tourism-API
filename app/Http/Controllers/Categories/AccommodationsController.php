@@ -9,6 +9,8 @@ use App\Http\Resources\ObjectStatisticsResource;
 use App\Http\Resources\ReviewsResource;
 use App\Models\Accommodation;
 use App\Http\Resources\AccommodationResource;
+use App\Models\Review;
+use App\Models\User;
 use App\Repositories\ReviewRepository;
 
 class AccommodationsController extends Controller
@@ -36,7 +38,7 @@ class AccommodationsController extends Controller
      */
     public function show(Accommodation $accommodation)
     {
-        if ($accommodation->app_id !== auth()->user()->app_id) {
+        if ($accommodation->app_id != auth()->user()->app_id && auth()->id() != User::SuperAdminId) {
             return $this->outWithError(__('user.forbidden'), 403);
         }
         $accommodation->load('generalInformation', 'workingHours');
@@ -50,7 +52,7 @@ class AccommodationsController extends Controller
      */
     public function objectReviews(Accommodation $accommodation)
     {
-        if ($accommodation->app_id !== auth()->user()->app_id) {
+        if ($accommodation->app_id != auth()->user()->app_id && auth()->id() != User::SuperAdminId) {
             return $this->outWithError(__('user.forbidden'), 403);
         }
         return $this->outPaginated(ReviewsResource::collection($accommodation->reviews()->with('attachments')->orderBy('created_at', 'DESC')->paginate(5)));
@@ -78,7 +80,10 @@ class AccommodationsController extends Controller
      */
     public function storeReview(Accommodation $accommodation, ReviewCreateRequest $request)
     {
-        if ($accommodation->app_id !== auth()->user()->app_id) {
+        if ($this->reviewRepository->userAlreadyReviewed($accommodation)) {
+            return $this->outWithError('You have already made a review');
+        }
+        if ($accommodation->app_id != auth()->user()->app_id && auth()->id() != User::SuperAdminId) {
             return $this->outWithError(__('user.forbidden'), 403);
         }
         $payload = [];
@@ -100,7 +105,7 @@ class AccommodationsController extends Controller
      */
     public function reviewStatistics(Accommodation $accommodation)
     {
-        if ($accommodation->app_id !== auth()->user()->app_id) {
+        if ($accommodation->app_id != auth()->user()->app_id && auth()->id() != User::SuperAdminId) {
             return $this->outWithError(__('user.forbidden'), 403);
         }
         $accommodation->number_of_reviews = $accommodation->reviews()->count();

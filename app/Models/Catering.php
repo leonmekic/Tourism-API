@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Contracts\Model;
 use Bnb\Laravel\Attachments\HasAttachment;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Catering extends Model
 {
-    use HasAttachment;
+    use HasAttachment, SoftDeletes;
 
     protected $table = 'catering';
 

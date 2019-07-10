@@ -9,6 +9,7 @@ use App\Http\Resources\ObjectStatisticsResource;
 use App\Http\Resources\ReviewsResource;
 use App\Models\Catering;
 use App\Http\Resources\CateringResource;
+use App\Models\User;
 use App\Repositories\ReviewRepository;
 
 class CateringController extends Controller
@@ -35,7 +36,7 @@ class CateringController extends Controller
      */
     public function show(Catering $catering)
     {
-        if ($catering->app_id !== auth()->user()->app_id) {
+        if ($catering->app_id != auth()->user()->app_id && auth()->id() != User::SuperAdminId) {
             return $this->outWithError(__('user.forbidden'), 403);
         }
         $catering->load('generalInformation', 'workingHours');
@@ -48,7 +49,7 @@ class CateringController extends Controller
      */
     public function objectReviews(Catering $catering)
     {
-        if ($catering->app_id !== auth()->user()->app_id) {
+        if ($catering->app_id != auth()->user()->app_id && auth()->id() != User::SuperAdminId) {
             return $this->outWithError(__('user.forbidden'),403);
         }
         return $this->outPaginated(ReviewsResource::collection($catering->reviews()->with('attachments')->orderBy('created_at', 'DESC')->paginate(5)));
@@ -76,7 +77,11 @@ class CateringController extends Controller
      */
     public function storeReview(Catering $catering, ReviewCreateRequest $request)
     {
-        if ($catering->app_id !== auth()->user()->app_id) {
+        if ($this->reviewRepository->userAlreadyReviewed($catering)) {
+            return $this->outWithError('You have already made a review');
+        }
+
+        if ($catering->app_id != auth()->user()->app_id && auth()->id() != User::SuperAdminId) {
             return $this->outWithError(__('user.forbidden'), 403);
         }
 
@@ -99,7 +104,7 @@ class CateringController extends Controller
      */
     public function reviewStatistics(Catering $catering)
     {
-        if ($catering->app_id !== auth()->user()->app_id) {
+        if ($catering->app_id != auth()->user()->app_id && auth()->id() != User::SuperAdminId) {
             return $this->outWithError(__('user.forbidden'), 403);
         }
         $catering->number_of_reviews = $catering->reviews()->count();

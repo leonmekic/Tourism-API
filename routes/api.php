@@ -110,6 +110,11 @@ Route::group(
         Route::get('shops', 'Categories\ShopController@index')->name('shops.list');
         Route::get('shops/{shop}', 'Categories\ShopController@show')->name('shop.show');
 
+        Route::get('accommodation/{accommodation}/rooms', 'Categories\RoomsController@index')->name('rooms.list');
+        Route::get('rooms/{room}', 'Categories\RoomsController@show')->name('room.show');
+
+        Route::post('rooms/{room}', 'Categories\BookingsController@store')->name('booking.store');
+
         Route::get('events', 'Categories\EventController@index')->name('events.list');
         Route::get('events/{event}', 'Categories\EventController@show')->name('event.show');
 

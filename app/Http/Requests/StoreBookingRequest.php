@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Review;
+namespace App\Http\Requests;
 
-use App\Rules\StarsValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ReviewCreateRequest extends FormRequest
+class StoreBookingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +24,9 @@ class ReviewCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'stars'   => ['required','integer', new StarsValidationRule],
-            'comment' => 'required|max:255',
+            'time_from'              => 'required|date_format:Y-m-d',
+            'time_to'                => 'required|date_format:Y-m-d',
+            'additional_information' => 'nullable|string|max:255'
         ];
     }
 }

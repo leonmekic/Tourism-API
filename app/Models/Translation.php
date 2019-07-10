@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 
-class Translation extends Model
+class Translation extends EloquentModel
 {
     protected $table = 'translations';
 }

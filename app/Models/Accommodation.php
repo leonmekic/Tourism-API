@@ -26,6 +26,11 @@ class Accommodation extends Model
     {
         return $this->morphMany('App\Models\Review', 'reviewable', 'model_type', 'model_id');
     }
+
+    public function rooms()
+    {
+        return $this->hasMany('App\Models\Room');
+    }
 }
 
 

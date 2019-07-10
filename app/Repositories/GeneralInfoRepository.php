@@ -36,16 +36,6 @@ class GeneralInfoRepository extends Repository {
         return $generalInformation;
     }
 
-//    public function updateGeneralInfo($model, array $payload)
-//    {
-////        $payload['model_type'] = get_class($model);
-////        $payload['model_id'] = $model->id;
-//
-//        $generalInformation = parent::update(get_class($model), $payload);
-//
-//        return $generalInformation;
-//    }
-
     public function deleteGeneralInfo(Model $model)
     {
         parent::delete($model);

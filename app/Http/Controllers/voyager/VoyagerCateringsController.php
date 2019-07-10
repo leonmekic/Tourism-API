@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Voyager;
 
+use App\Models\App;
 use App\Models\Catering;
 use App\Models\User;
 use App\Repositories\GeneralInfoRepository;
@@ -290,6 +291,7 @@ class VoyagerCateringsController extends \TCG\Voyager\Http\Controllers\VoyagerBa
     {
         $validatedData = $request->validate(
             [
+                'app_id'       => [Rule::requiredIf(auth()->id() == User::SuperAdminId), Rule::in(App::AppIds)],
                 'address'      => 'nullable|string',
                 'phone_number' => 'nullable|string',
                 'email'        => 'nullable|string|email|unique:generalInfo,email',
@@ -357,6 +359,7 @@ class VoyagerCateringsController extends \TCG\Voyager\Http\Controllers\VoyagerBa
     {
         $validatedData = $request->validate(
             [
+                'app_id'       => [Rule::requiredIf(auth()->id() == User::SuperAdminId), Rule::in(App::AppIds)],
                 'address'      => 'nullable|string',
                 'phone_number' => 'nullable|string',
                 'email'        => 'nullable|string|email|unique:generalInfo,email',

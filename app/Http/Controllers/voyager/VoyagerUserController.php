@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Voyager;
 
+use App\Models\App;
 use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use TCG\Voyager\Events\BreadDataAdded;
 use TCG\Voyager\Events\BreadDataUpdated;
 use TCG\Voyager\Facades\Voyager;
@@ -276,6 +278,12 @@ class VoyagerUserController extends BaseVoyagerUserController
 
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate(
+            [
+                'app_id'       => [Rule::requiredIf(auth()->id() == User::SuperAdminId), Rule::in(App::AppIds)],
+            ]
+        );
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -300,7 +308,7 @@ class VoyagerUserController extends BaseVoyagerUserController
         $request['terms_and_conditions'] = true;
         $request['active'] = true;
         $request['activation_token'] = '';
-        $request['role_id'] = User::UserRoleId;
+        $request['role_id'] = $data->role_id;
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
 
@@ -316,6 +324,12 @@ class VoyagerUserController extends BaseVoyagerUserController
 
     public function store(Request $request)
     {
+        $validatedData = $request->validate(
+            [
+                'app_id'       => [Rule::requiredIf(auth()->id() == User::SuperAdminId), Rule::in(App::AppIds)],
+            ]
+        );
+
         $slug = $this->getSlug($request);
 
 
