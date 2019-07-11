@@ -13,6 +13,16 @@ class User extends \TCG\Voyager\Models\User
     const SuperAdminId = 3;
     const UserRoleId = 2;
 
+    public function scopeInAppUsers($query)
+    {
+        $user = auth()->user();
+        if ($user->id == User::SuperAdminId) {
+            return $query;
+        }
+
+        return $query->where('app_id', $user->app_id)->where('id','!=', User::SuperAdminId);
+    }
+
     protected $dates = ['deleted_at'];
 
     /**

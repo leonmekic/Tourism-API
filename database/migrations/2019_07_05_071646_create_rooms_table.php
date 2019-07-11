@@ -18,7 +18,6 @@ class CreateRoomsTable extends Migration
             $table->integer('room_number');
             $table->string('capacity');
             $table->text('description')->nullable();
-            $table->boolean('occupied')->default(false);
             $table->string('accommodation_id');
             $table->integer('app_id');
             $table->timestamps();

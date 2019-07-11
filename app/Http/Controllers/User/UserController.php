@@ -11,8 +11,8 @@ class UserController extends Controller
     public function updateUser(UpdateUserRequest $request)
     {
         $user = auth()->user();
-        $user->name = $request->name;
-        $user->phone_number = $request->phone_number;
+        $user->name = $request->input('name');
+        $user->phone_number = $request->input('phone_number');
         $user->save();
 
         return $this->out(new UserResource($user));

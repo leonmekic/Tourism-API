@@ -22,7 +22,6 @@ class Model extends EloquentModel
         return $query->where('approved', 0);
     }
 
-
     /**
      * Return model table name
      *

@@ -17,8 +17,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        NewUserRegistered::class => [
-            SignupActivate::class,
+        'App\Events\BookingAccepted' => [
+            'App\Listeners\SendBookingAcceptedEmail',
+        ],
+        'App\Events\BookingDenied' => [
+            'App\Listeners\SendBookingDeniedEmail',
         ],
     ];
 
@@ -35,6 +38,6 @@ class EventServiceProvider extends ServiceProvider
 
     public function shouldDiscoverEvents()
     {
-        return true;
+        return false;
     }
 }

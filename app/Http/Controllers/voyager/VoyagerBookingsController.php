@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Voyager;
 
+use App\Events\BookingAccepted;
+use App\Events\BookingApproved;
+use App\Events\BookingDenied;
+use App\Events\BookingProcessed;
 use App\Models\App;
 use App\Models\User;
 use Illuminate\Validation\Rule;
@@ -78,6 +82,16 @@ class VoyagerBookingsController extends VoyagerBaseController
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
 
         event(new BreadDataUpdated($dataType, $data));
+
+        $user = User::find($request->input('user_id'));
+
+        $userEmail = data_get($user, 'email');
+
+        if ($request->input('approved') == 1) {
+            event(new BookingAccepted($data));
+        } elseif ($request->input('approved') == 0) {
+            event(new BookingDenied($data));
+        }
 
         return redirect()->route("voyager.{$dataType->slug}.index")->with(
             [
