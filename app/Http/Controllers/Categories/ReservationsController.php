@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Categories;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Resources\BookingResource;
+use App\Models\Attraction;
 use App\Models\Booking;
-use App\Models\Room;
 use App\Repositories\BookingRepository;
+use Illuminate\Http\Request;
 
-class BookingsController extends Controller
+class ReservationsController extends Controller
 {
     protected $bookingRepository;
 
@@ -21,13 +22,12 @@ class BookingsController extends Controller
     /**
      * Store booking for a room
      */
-    public function store(Room $room, StoreBookingRequest $request)
+    public function store(Attraction $attraction, Request $request)
     {
         $payload['time_from'] = $request->time_from;
         $payload['time_to'] = $request->time_to;
-        $payload['additional_information'] = $request->additional_information;
 
-        $booking = $this->bookingRepository->createBooking($room, $payload);
+        $booking = $this->bookingRepository->createBooking($attraction, $payload);
 
         if ($booking instanceof Booking){
             return $this->out(new BookingResource($booking));

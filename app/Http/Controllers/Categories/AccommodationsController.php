@@ -9,7 +9,11 @@ use App\Http\Resources\ObjectStatisticsResource;
 use App\Http\Resources\ReviewsResource;
 use App\Models\Accommodation;
 use App\Http\Resources\AccommodationResource;
+use App\Models\Attraction;
+use App\Models\Catering;
+use App\Models\Event;
 use App\Models\Review;
+use App\Models\Shop;
 use App\Models\User;
 use App\Repositories\ReviewRepository;
 
@@ -120,5 +124,27 @@ class AccommodationsController extends Controller
         $accommodation->rating_count = $ratingCount;
 
         return $this->out(new ObjectStatisticsResource($accommodation));
+    }
+
+    /**
+     * Dashboard with application statistics
+     */
+    public function dashboard()
+    {
+        $user = auth()->user();
+
+        $accommodations = Accommodation::where('app_id', $user->app_id)->with('rooms')->get();
+        $number_of_accommodations = count($accommodations);
+        foreach ($accommodations as $accommodation) {
+            foreach ($accommodation->rooms as $room) {
+                $room->capacity;
+            }
+        }
+
+//        $attractions = Attraction::where('app_id', $user->app_id)->get();
+//        $caterings = Catering::where('app_id', $user->app_id)->get();
+//        $events = Event::where('app_id', $user->app_id)->get();
+//        $shops = Shop::where('app_id', $user->app_id)->get();
+
     }
 }

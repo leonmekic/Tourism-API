@@ -20,6 +20,7 @@ class RoomResource extends JsonResource
             'room_number' => $this->room_number,
             'capacity'    => $this->capacity,
             'calendar'    => $this->when($this->calendar, $this->calendar),
+            'bookings'    => BookingResource::collection($this->whenLoaded('bookings'))
         ];
     }
 }

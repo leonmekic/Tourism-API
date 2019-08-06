@@ -19,3 +19,14 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::group(
+    [
+//        'middleware' => ['auth:api', 'isAccountActive'],
+        'prefix' => 'administrator'
+    ],
+    function () {
+        Route::get('accommodations', 'Web\AdminBookingController@accommodationList')->name('admin.accommodations.list');
+        Route::get('accommodations/rooms/{room}', 'Web\AdminBookingController@showBookings')->name('admin.room.bookings');
+    }
+);

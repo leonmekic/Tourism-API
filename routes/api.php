@@ -112,6 +112,8 @@ Route::group(
 
         Route::get('accommodation/{accommodation}/rooms', 'Categories\RoomsController@index')->name('rooms.list');
         Route::get('rooms/{room}', 'Categories\RoomsController@show')->name('room.show');
+        Route::get('accommodations/capacity/{accommodation}', 'Categories\RoomsController@capacity')->name('rooms.capacity');
+        Route::get('dashboard', 'Categories\AccommodationsController@dashboard')->name('dashboard');
 
         Route::post('rooms/{room}', 'Categories\BookingsController@store')->name('booking.store');
 
@@ -132,3 +134,4 @@ Route::group(
 
     }
 );
+

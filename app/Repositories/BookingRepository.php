@@ -106,4 +106,31 @@ class BookingRepository extends Repository
 
         return $calendar;
     }
+
+    public function checkBooking($room, $date = null)
+    {
+        if (!$date) {
+            $date = Carbon::now();
+            $startMonth = $date->copy()->startOfMonth();
+            $endMonth = $date->copy()->endOfMonth();
+        } else {
+            $date = Carbon::parse($date);
+            $startMonth = $date->copy()->startOfMonth();
+            $endMonth = $date->copy()->endOfMonth();
+        }
+
+        $booked_dates = $this->getBookedDates($room);
+
+        $month_dates = CarbonPeriod::create($startMonth, $endMonth)->toArray();
+
+        foreach ($month_dates as $month_date) {
+            if (in_array($month_date, $booked_dates)) {
+                $calendar[] = 'booked_days';
+            } else {
+                $calendar[] = 'empty_days';
+            }
+        }
+
+        return $calendar;
+    }
 }

@@ -50,6 +50,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "Category\\Trip\\": "Trip-Package/Category/Trip/src",
             "Tests\\": "tests/"
         }
     },
